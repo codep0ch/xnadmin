@@ -31,6 +31,10 @@
                             <div class="layui-input-block">
                                 <input type="text" id='platformCertificateFilePath' name="platformCertificateFilePath" value="{$wechat_setting_data.platformCertificateFilePath}" autocomplete="off" class="layui-input">
                             </div>
+                            <button type="button" class="layui-btn platformCertificateFilePathUploader" lay-options="{accept: 'file'}">
+                                <i class="layui-icon layui-icon-upload"></i>
+                                上传文件
+                            </button>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">ApiV3密钥</label>
@@ -65,6 +69,15 @@
             accept: 'file', // 普通文件
             done: function(res){
                 $('#merchantCertificateSerial').val(res.file)
+                layer.msg('上传成功');
+            }
+        });
+        upload.render({
+            elem: '.platformCertificateFilePath', // 绑定多个元素
+            url: '/admin/wechat/uploader', // 此处配置你自己的上传接口即可
+            accept: 'file', // 普通文件
+            done: function(res){
+                $('#platformCertificateFilePath').val(res.file)
                 layer.msg('上传成功');
             }
         });

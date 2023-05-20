@@ -17,6 +17,7 @@ class Wechat extends AdminBase
     {
         if( $this->request->isPost() ) {
             $param = $this->request->post();
+            unset($param['file']);
             $result = WechatSettingModel::where('id',1)->update($param);
             if( $result ) {
                 xn_add_admin_log('修改微信配置');
