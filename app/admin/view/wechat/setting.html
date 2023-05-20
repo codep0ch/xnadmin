@@ -20,7 +20,7 @@
                             <label class="layui-form-label">商户API证书</label>
                             <div class="layui-input-block">
                                 <input type="text" name="merchantCertificateSerial" value="{$wechat_setting_data.merchantCertificateSerial}" placeholder="" autocomplete="off" class="layui-input">
-                                <button type="button" class="layui-btn demo-class-accept" lay-options="{accept: 'file'}">
+                                <button type="button" class="layui-btn merchantCertificateSerialUploader" lay-options="{accept: 'file'}">
                                     <i class="layui-icon layui-icon-upload"></i>
                                     上传文件
                                 </button>
@@ -52,4 +52,23 @@
         </div>
     </div>
 </div>
+{/block}
+
+{block name="js"}
+<script>
+    layui.use('laydate', function(){
+        var upload = layui.upload;
+
+        // 渲染
+        upload.render({
+            elem: '.merchantCertificateSerialUploader', // 绑定多个元素
+            url: '', // 此处配置你自己的上传接口即可
+            accept: 'file', // 普通文件
+            done: function(res){
+                layer.msg('上传成功');
+                console.log(res);
+            }
+        });
+    });
+</script>
 {/block}
