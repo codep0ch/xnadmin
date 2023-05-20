@@ -25,7 +25,6 @@ class Wechat
         // 从「微信支付平台证书」中获取「证书序列号」
         $platformCertificateSerial = PemUtil::parseCertificateSerialNo($platformCertificateFilePath);
 
-        $merchantCertificateSerial = $platformCertificateSerial;
         // 构造一个 APIv3 客户端实例
         $this->instance = Builder::factory([
             'mchid'      => $merchantId,
