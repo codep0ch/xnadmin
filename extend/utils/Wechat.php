@@ -12,7 +12,7 @@ class Wechat
         $merchantId = '1644958700';
 
         // 从本地文件中加载「商户API私钥」，「商户API私钥」会用来生成请求的签名
-        $merchantPrivateKeyFilePath = 'file://'.app()->getRootPath().'/extend/utils/cert/wechatpay.pem';
+        $merchantPrivateKeyFilePath = 'file://'.app()->getRootPath().'/extend/utils/cert/aliclient_cert.pem';
         $merchantPrivateKeyInstance = Rsa::from($merchantPrivateKeyFilePath, Rsa::KEY_TYPE_PRIVATE);
 
         // 「商户API证书」的「证书序列号」
