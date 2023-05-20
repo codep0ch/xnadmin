@@ -26,6 +26,8 @@ class Coupon extends AdminBase
             $param = $this->request->param();
             //注入c_id
             $param['c_id'] = generateUid();
+            //批次归属商户号
+            $param['belong_merchant'] = '123';
             $insert_id = CouponModel::insertGetId($param);
             if( $insert_id ) {
                 xn_add_admin_log('添加优惠券');
