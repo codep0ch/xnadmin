@@ -36,9 +36,15 @@ class Wechat
         ]);
         return $this;
     }
-    public function test(){
+
+    /**
+     * 该方法用于验证是否成功
+     * @return void
+     */
+    public function sign_test(){
         // 发送请求
         $resp = $this->instance->chain('v3/certificates')->get();
-        echo $resp->getBody();
+        $array = json_decode($resp->getBody());
+        var_dump($array);
     }
 }
