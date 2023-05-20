@@ -14,8 +14,7 @@ class Wechat
             $merchantPrivateKeyFile = 'file://'.$merchantPrivateKeyFile;
             $merchantPrivateKeyInstance = Rsa::from($merchantPrivateKeyFile, Rsa::KEY_TYPE_PRIVATE);
 
-            // 「商户API证书」的「证书序列号」 (微信支付API安全中获取的证书序列号)
-            $merchantCertificateSerial = empty($merchantCertificateSerial) ?? 0;
+            // merchantCertificateSerial:「商户API证书」的「证书序列号」 (微信支付API安全中获取的证书序列号)
 
             // 从本地文件中加载「微信支付平台证书」，用来验证微信支付应答的签名 (这里的文件采用使用CertificateDownloader生成的证书)
             $platformCertificateFilePath = 'file://'.$platformCertificateFilePath;
