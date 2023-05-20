@@ -11,35 +11,29 @@
                     <div class="layui-form" lay-filter="">
                         <form action="{:request()->url()}" method="post">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">用户名</label>
+                            <label class="layui-form-label">微信支付商户号</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="" value="{$user_data.username}" readonly="" class="layui-input">
+                                <input type="text" name="" value="{$wechat_setting_data.merchantId}" readonly="" class="layui-input">
                             </div>
                             <div class="layui-form-mid layui-word-aux">不可修改。</div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">密码</label>
+                            <label class="layui-form-label">商户API证书</label>
                             <div class="layui-input-inline">
-                                <input type="password" name="password" placeholder="" autocomplete="off" class="layui-input" value="">
+                                <input type="text" name="merchantCertificateSerial" value="{$wechat_setting_data.merchantCertificateSerial}" placeholder="" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-form-mid layui-word-aux">不修改请留空。</div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">手机</label>
+                            <label class="layui-form-label">微信支付平台证书</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="phone" value="{$user_data.phone}" lay-verify="phone" autocomplete="off" class="layui-input">
+                                <input type="text" name="platformCertificateFilePath" value="{$wechat_setting_data.platformCertificateFilePath}" lay-verify="phone" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">邮箱</label>
+                            <label class="layui-form-label">ApiV3密钥</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="email" value="{$user_data.email}" lay-verify="email" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">备注</label>
-                            <div class="layui-input-block">
-                                <textarea name="remark" placeholder="请输入内容" class="layui-textarea">{$user_data.remark}</textarea>
+                                <input type="text" name="apiv3Key" value="{$wechat_setting_data.apiv3Key}"  autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
