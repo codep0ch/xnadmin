@@ -44,7 +44,7 @@ class Wechat
     public function sign_test(){
         // 发送请求
         $resp = $this->instance->chain('v3/certificates')->get();
-        $array = json_decode($resp->getBody());
+        $array = json_decode($resp->getBody(), true);
         var_dump($array);
     }
 }
