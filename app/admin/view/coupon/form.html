@@ -76,12 +76,18 @@
         </div>
     </form>
 </div>
+{/block}
+
+{block name="js"}
 <script>
-    layui.use(['laydate'], function(){
+    layui.use('laydate', function(){
         var laydate = layui.laydate;
-        // 日期
+
         laydate.render({
             elem: '#available_begin_time'
+        });
+        laydate.render({
+            elem: '#available_end_time'
         });
     });
 </script>
