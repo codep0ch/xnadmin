@@ -1,6 +1,5 @@
 <?php
 // 应用公共文件
-
 if(!function_exists('generateUid')){
     /**
      * 生成UID方案

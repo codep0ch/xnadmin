@@ -62,7 +62,7 @@
         // 渲染
         upload.render({
             elem: '.merchantCertificateSerialUploader', // 绑定多个元素
-            url: '', // 此处配置你自己的上传接口即可
+            url: '/admin/wechat/uploader', // 此处配置你自己的上传接口即可
             accept: 'file', // 普通文件
             done: function(res){
                 layer.msg('上传成功');

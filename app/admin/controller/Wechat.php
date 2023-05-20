@@ -28,4 +28,12 @@ class Wechat extends AdminBase
         $wechat_setting_data = WechatSettingModel::find(1);
         return view('', ['wechat_setting_data'=>$wechat_setting_data]);
     }
+
+    public function uploader(){
+        $file = request()->file('file');
+        // 接收示例一
+        // 上传到本地服务器   默认上传到runtime/storage目录下面生成以当前日期为子目录
+        $fileName = \think\facade\Filesystem::putFile('file', $file,'sha1');
+        var_dump($fileName);
+    }
 }
