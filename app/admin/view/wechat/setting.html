@@ -17,7 +17,14 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">商户API证书</label>
+                            <label class="layui-form-label">商户API证书序列号</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="merchantCertificateSerial" value="{$wechat_setting_data.merchantCertificateSerial}" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">商户API私钥证书</label>
                             <div class="layui-input-block">
                                 <input type="text" id='merchantCertificateSerial' name="merchantCertificateSerial" value="{$wechat_setting_data.merchantCertificateSerial}" placeholder="" autocomplete="off" class="layui-input">
                                 <button type="button" class="layui-btn merchantCertificateSerialUploader" lay-options="{accept: 'file'}">
