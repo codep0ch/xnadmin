@@ -2,16 +2,14 @@
 namespace app\admin\controller;
 
 use app\common\controller\AdminBase;
-use app\common\model\Admin as AdminModel;
-use app\common\model\AuthGroup;
-use app\common\model\AuthGroupAccess;
+use app\common\model\Coupon as CouponModel;
 use think\facade\Db;
 
 class Coupon extends AdminBase
 {
     public function index()
     {
-        $list = AdminModel::with(['auth_group_access'])->select();
+        $list = CouponModel::select();
         return view('',['list'=>$list]);
     }
 
@@ -26,22 +24,16 @@ class Coupon extends AdminBase
     {
         if( $this->request->isPost() ) {
             $param = $this->request->param();
-            $param['password'] = xn_encrypt($param['password']);
-            $insert_id = Db::name('admin')->strict(false)->insertGetId($param);
+            $insert_id = CouponModel::insertGetId($param);
             if( $insert_id ) {
-                if( !empty($param['group_ids']) ) {
-                    foreach ($param['group_ids'] as $group_id) {
-                        AuthGroupAccess::create(['admin_id'=>$insert_id,'group_id'=>$group_id]);
-                    }
-                }
-                xn_add_admin_log('添加管理员');
-                $this->success('操作成功');
+                xn_add_admin_log('添加优惠券');
+                $this->success('添加成功');
             } else {
-                $this->error('操作失败');
+                $this->error('添加失败');
             }
         }
-        $group_data = AuthGroup::select();
-        return view('form',['group_data'=>$group_data]);
+        $coupon_data = CouponModel::select();
+        return view('form',['coupon_data'=>$coupon_data]);
     }
 
     /**
