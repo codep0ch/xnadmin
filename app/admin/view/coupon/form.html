@@ -1,4 +1,5 @@
 {extend name="iframe" /}
+{block name="body"}
 <style>
     .layui-form-item .layui-input-inline {
         float: left;
@@ -6,7 +7,6 @@
         margin-right: 10px;
     }
 </style>
-{block name="body"}
 <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
     <form action="{:request()->url()}" method="post" class="xn_ajax" data-type="open">
         <div class="layui-form-item">
