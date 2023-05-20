@@ -27,7 +27,14 @@ class Wechat extends AdminBase
             }
         }
         $wechat_setting_data = WechatSettingModel::find(1);
-        return view('', ['wechat_setting_data'=>$wechat_setting_data]);
+        $wechat = new \utils\Wechat();
+        $status = $wechat->createWechatPay(
+            $wechat_setting_data['merchantId'],
+            $wechat_setting_data['merchantPrivateKeyFile'],
+            $wechat_setting_data['merchantCertificateSerial'],
+            $wechat_setting_data['platformCertificateFilePath']
+        )->sign_test();
+        return view('', ['wechat_setting_data'=>$wechat_setting_data, 'status' => $status]);
     }
 
     public function uploader(){
