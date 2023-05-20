@@ -34,6 +34,7 @@ class Wechat
             ]);
         }catch (\Exception $e){
             $this->instance = new \stdClass();
+            var_dump($e);die;
         }
         return $this;
     }
