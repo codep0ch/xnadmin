@@ -34,7 +34,7 @@ class Wechat extends AdminBase
             $wechat_setting_data['merchantCertificateSerial'],
             $wechat_setting_data['platformCertificateFilePath']
         )->sign_test();
-        return view('', ['wechat_setting_data'=>$wechat_setting_data, 'status' => $status]);
+        return view('', ['wechat_setting_data'=>$wechat_setting_data, 'status' => $status == true ? '验证通过' : '验证失败']);
     }
 
     public function uploader(){
