@@ -6,6 +6,7 @@ use WeChatPay\Util\PemUtil;
 class Wechat
 {
     public $instance = null;
+    public $error = [];
     public function createWechatPay($merchantId, $merchantPrivateKeyFile, $merchantCertificateSerial, $platformCertificateFilePath): Wechat
     {
         try {
@@ -34,9 +35,13 @@ class Wechat
             ]);
         }catch (\Exception $e){
             $this->instance = new \stdClass();
-            var_dump($e->getMessage());die;
+            $this->error[] = $e->getMessage();
         }
         return $this;
+    }
+
+    public function getError(){
+        return $this->error;
     }
 
     /**
