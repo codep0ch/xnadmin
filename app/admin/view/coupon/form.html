@@ -3,74 +3,69 @@
 <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
     <form action="{:request()->url()}" method="post" class="xn_ajax" data-type="open">
         <div class="layui-form-item">
-            <label class="layui-form-label">商家券批次名称</label>
+            <label class="layui-form-label">批次名称</label>
             <div class="layui-input-block">
                 <input type="text" name="stock_name" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$user_data.username}">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">适用商品范围</label>
-            <div class="layui-input-inline">
+            <label class="layui-form-label">商品范围</label>
+            <div class="layui-input-block">
                 <input type="text" name="goods_name" placeholder="" autocomplete="off" class="layui-input" value="">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">适用商品范围</label>
-            <div class="layui-input-inline">
-                <input type="text" name="goods_name" placeholder="" autocomplete="off" class="layui-input" value="">
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">券可核销开始时间</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" name="available_begin_time" placeholder="" autocomplete="off" class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">券可核销结束时间</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" name="available_end_time" placeholder="" autocomplete="off" class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">生效后N天内有效</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" name="available_day_after_receive" placeholder="" autocomplete="off" class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">批次最大发放个数</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" name="max_coupons" placeholder="" autocomplete="off" class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">用户最大可领个数</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" name="max_coupons_per_user" placeholder="" autocomplete="off" class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">是否开启自然人限制</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="checkbox" lay-verify="required" lay-filter="status" name="natural_person_limit" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$user_data['status'] eq 1"}checked{/if} >
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">可疑账号拦截</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="checkbox" lay-verify="required" lay-filter="status" name="prevent_api_abuse" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$user_data['status'] eq 1"}checked{/if} >
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">使用须知</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="text" name="description" placeholder="" autocomplete="off" class="layui-input" value="">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">状态</label>
-            <div class="layui-input-inline">
+            <div class="layui-input-block">
                 <input type="checkbox" lay-verify="required" lay-filter="status" name="status" lay-skin="switch" lay-text="正常|禁止" value="1" {if condition="$user_data['status'] eq 1"}checked{/if} >
             </div>
         </div>
