@@ -16,10 +16,10 @@ class Wechat
         $merchantPrivateKeyInstance = Rsa::from($merchantPrivateKeyFile, Rsa::KEY_TYPE_PRIVATE);
 
         // 「商户API证书」的「证书序列号」
-        $merchantCertificateSerial = '5244495AA3C4C59788075C7892C116C1BAF2A61C';
+        $merchantCertificateSerial = '40BC765B67DC5C7872AC1D8C9F76F601770C3CC0';
 
         // 从本地文件中加载「微信支付平台证书」，用来验证微信支付应答的签名
-        $platformCertificateFilePath = 'file://'.app()->getRootPath().'/extend/utils/cert/apiclient_cert.pem';
+        $platformCertificateFilePath = 'file://'.app()->getRootPath().'/extend/utils/cert/wechatpay.pem';
         $platformPublicKeyInstance = Rsa::from($platformCertificateFilePath, Rsa::KEY_TYPE_PUBLIC);
 
         // 从「微信支付平台证书」中获取「证书序列号」
