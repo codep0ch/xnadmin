@@ -62,7 +62,6 @@
 <script>
     layui.use(['laydate','jquery'], function(){
         var upload = layui.upload;
-        var upload2 = layui.upload;
         // 渲染
         upload.render({
             elem: '.merchantCertificateSerialUploader', // 绑定多个元素
@@ -73,8 +72,8 @@
                 layer.msg('上传成功');
             }
         });
-        upload2.render({
-            elem: '.platformCertificateFilePath', // 绑定多个元素
+        upload.render({
+            elem: '.platformCertificateFilePathUploader', // 绑定多个元素
             url: '/admin/wechat/uploader', // 此处配置你自己的上传接口即可
             accept: 'file', // 普通文件
             done: function(res){
