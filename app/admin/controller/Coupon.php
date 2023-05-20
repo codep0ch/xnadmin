@@ -25,8 +25,8 @@ class Coupon extends AdminBase
         if( $this->request->isPost() ) {
             $param = $this->request->param();
             //处理表单
-            $param['natural_person_limit'] = empty($param['natural_person_limit']) ?? 0;
-            $param['prevent_api_abuse'] = empty($param['prevent_api_abuse']) ?? 0;
+            $param['natural_person_limit'] = $param['natural_person_limit'] ?? 0;
+            $param['prevent_api_abuse'] = $param['prevent_api_abuse'] ?? 0;
             var_dump($param);die;
             //注入c_id
             $param['c_id'] = generateUid();
