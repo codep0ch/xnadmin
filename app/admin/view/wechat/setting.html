@@ -26,8 +26,8 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">商户API私钥证书</label>
                             <div class="layui-input-block">
-                                <input type="text" id='merchantCertificateSerial' name="merchantCertificateSerial" value="{$wechat_setting_data.merchantCertificateSerial}" placeholder="" autocomplete="off" class="layui-input">
-                                <button type="button" class="layui-btn merchantCertificateSerialUploader" lay-options="{accept: 'file'}">
+                                <input type="text" id='merchantPrivateKeyFile' name="merchantPrivateKeyFile" value="{$wechat_setting_data.merchantPrivateKeyFile}" placeholder="" autocomplete="off" class="layui-input">
+                                <button type="button" class="layui-btn merchantPrivateKeyFileUploader" lay-options="{accept: 'file'}">
                                     <i class="layui-icon layui-icon-upload"></i>
                                     上传文件
                                 </button>
@@ -71,11 +71,11 @@
         var upload = layui.upload;
         // 渲染
         upload.render({
-            elem: '.merchantCertificateSerialUploader', // 绑定多个元素
+            elem: '.merchantPrivateKeyFile', // 绑定多个元素
             url: '/admin/wechat/uploader', // 此处配置你自己的上传接口即可
             accept: 'file', // 普通文件
             done: function(res){
-                $('#merchantCertificateSerial').val(res.file)
+                $('#merchantPrivateKeyFile').val(res.file)
                 layer.msg('上传成功');
             }
         });
