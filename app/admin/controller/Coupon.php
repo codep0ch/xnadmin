@@ -4,6 +4,7 @@ namespace app\admin\controller;
 use app\common\controller\AdminBase;
 use app\common\model\Coupon as CouponModel;
 use think\facade\Db;
+use utils\Wechat;
 
 class Coupon extends AdminBase
 {
@@ -34,7 +35,9 @@ class Coupon extends AdminBase
             //获取订单号
             $out_request_no = random(32,false);
             $param['out_request_no'] = $out_request_no;
-            var_dump($param);die;
+
+            $wechat = (new Wechat())->createWechatPay()->test();
+            var_dump($wechat);die;
             $insert_id = CouponModel::insertGetId($param);
             if( $insert_id ) {
                 xn_add_admin_log('添加优惠券');
