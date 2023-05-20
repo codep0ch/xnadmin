@@ -1,6 +1,18 @@
 <?php
 // 应用公共文件
 
+if(!function_exists('generateUid')){
+    /**
+     * 生成UID方案
+     * @return mixed
+     */
+    function generateUid()
+    {
+        return call_user_func('str_shuffle', time());
+    }
+}
+
+
 /**
  * 字节数Byte转换为KB、MB、GB、TB
  * @param int $size

@@ -24,6 +24,8 @@ class Coupon extends AdminBase
     {
         if( $this->request->isPost() ) {
             $param = $this->request->param();
+            //注入c_id
+            $param['c_id'] = generateUid();
             $insert_id = CouponModel::insertGetId($param);
             if( $insert_id ) {
                 xn_add_admin_log('添加优惠券');
