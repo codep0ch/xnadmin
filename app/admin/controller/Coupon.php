@@ -35,7 +35,7 @@ class Coupon extends AdminBase
             //获取订单号
             $out_request_no = random(32,false);
             $param['out_request_no'] = $out_request_no;
-
+            echo app()->getRootPath().'/extend/utils/cert/';
             $wechat = (new Wechat())->createWechatPay()->test();
             var_dump($wechat);die;
             $insert_id = CouponModel::insertGetId($param);

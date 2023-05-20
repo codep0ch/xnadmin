@@ -12,14 +12,14 @@ class Wechat
         $merchantId = '1644958700';
 
         // 从本地文件中加载「商户API私钥」，「商户API私钥」会用来生成请求的签名
-        $merchantPrivateKeyFilePath = 'file://./cert/apiclient_key.pem';
+        $merchantPrivateKeyFilePath = 'file://'.app()->getRootPath().'/extend/utils/cert/apiclient_key.pem';
         $merchantPrivateKeyInstance = Rsa::from($merchantPrivateKeyFilePath, Rsa::KEY_TYPE_PRIVATE);
 
         // 「商户API证书」的「证书序列号」
         $merchantCertificateSerial = 'RL6VHZ1DG78N5Y4X1S9FP6QK0U345790';
 
         // 从本地文件中加载「微信支付平台证书」，用来验证微信支付应答的签名
-        $platformCertificateFilePath = '.\cert\apiclient_cert.pem';
+        $platformCertificateFilePath = 'file://'.app()->getRootPath().'/extend/utils/cert/apiclient_cert.pem';
         $platformPublicKeyInstance = Rsa::from($platformCertificateFilePath, Rsa::KEY_TYPE_PUBLIC);
 
         // 从「微信支付平台证书」中获取「证书序列号」
