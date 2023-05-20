@@ -5,7 +5,7 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">设置我的资料</div>
+                <div class="layui-card-header">添加优惠券</div>
                 <div class="layui-card-body" pad15="">
                     <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
                         <form action="{:request()->url()}" method="post" class="xn_ajax" data-type="open">
@@ -25,12 +25,18 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">券可核销开始时间</label>
                                 <div class="layui-input-block">
+                                    <div class="layui-input-prefix">
+                                        <i class="layui-icon layui-icon-date"></i>
+                                    </div>
                                     <input type="text" id="available_begin_time" name="available_begin_time" placeholder="" autocomplete="off" class="layui-input" lay-verify="date" value="">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">券可核销结束时间</label>
                                 <div class="layui-input-block">
+                                    <div class="layui-input-prefix">
+                                        <i class="layui-icon layui-icon-date"></i>
+                                    </div>
                                     <input type="text" id="available_end_time" name="available_end_time" placeholder="" autocomplete="off" class="layui-input" lay-verify="date" value="">
                                 </div>
                             </div>
