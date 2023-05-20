@@ -16,8 +16,7 @@ class Wechat extends AdminBase
     public function setting()
     {
         if( $this->request->isPost() ) {
-            $param = $this->request->param();
-            var_dump($param);die;
+            $param = $this->request->post();
             $result = WechatSettingModel::where('id',1)->update($param);
             if( $result ) {
                 xn_add_admin_log('修改微信配置');
