@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\AdminBase;
+use app\common\model\WechatSetting as WechatSettingModel;
 use think\facade\Db;
 
 class Wechat extends AdminBase
@@ -17,22 +18,15 @@ class Wechat extends AdminBase
     {
         if( $this->request->isPost() ) {
             $param = $this->request->param();
-            $id = $this->getAdminId();
-            if( $param['password']!='' ){
-                $param['password'] = xn_encrypt($param['password']);
-            } else {
-                unset($param['password']);
-            }
-            $result = AdminModel::where('id',$id)->update($param);
+            $result = WechatSettingModel::where('id',1)->update($param);
             if( $result ) {
-                xn_add_admin_log('修改个人资料');
+                xn_add_admin_log('修改微信配置');
                 $this->success('操作成功');
             } else {
                 $this->error('操作失败');
             }
         }
-        $id = $this->getAdminId();
-        $user_data = AdminModel::find($id);
-        return view('', ['user_data'=>$user_data]);
+        $wechat_setting_data = WechatSettingModel::find(1);
+        return view('', ['wechat_setting_data'=>$wechat_setting_data]);
     }
 }
