@@ -3,7 +3,6 @@ namespace app\admin\controller;
 
 use app\common\controller\AdminBase;
 use app\common\model\WechatSetting as WechatSettingModel;
-use think\facade\Db;
 
 class Wechat extends AdminBase
 {
