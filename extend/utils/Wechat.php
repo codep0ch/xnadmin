@@ -41,6 +41,6 @@ class Wechat
         $resp = $this->instance->chain('v3/certificates')->get(
             ['debug' => true] // 调试模式，https://docs.guzzlephp.org/en/stable/request-options.html#debug
         );
-        echo $resp->getBody(), PHP_EOL;
+        echo $resp->getBody();
     }
 }
