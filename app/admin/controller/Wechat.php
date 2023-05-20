@@ -34,6 +34,6 @@ class Wechat extends AdminBase
         // 接收示例一
         // 上传到本地服务器   默认上传到runtime/storage目录下面生成以当前日期为子目录
         $fileName = \think\facade\Filesystem::putFile('file', $file,'sha1');
-        var_dump($fileName);
+        return json_encode(['file' => '/www/wwwroot/test/runtime/storage/'.$fileName]);
     }
 }
