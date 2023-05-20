@@ -43,14 +43,12 @@ class Wechat
      * @return void
      */
     public function sign_test(){
-        // 发送请求
-        try {
-            $resp = $this->instance->chain('v3/certificates')->get();
-            $array = json_decode($resp->getBody(), true);
-            return !empty($array['data'][0]['serial_no']);
-        } catch (\Exception $e){
+        if (empty($this->instance->chain)){
             return false;
         }
-
+        // 发送请求
+        $resp = $this->instance->chain('v3/certificates')->get();
+        $array = json_decode($resp->getBody(), true);
+        return !empty($array['data'][0]['serial_no']);
     }
 }
