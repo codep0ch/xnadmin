@@ -24,10 +24,14 @@ class Coupon extends AdminBase
     {
         if( $this->request->isPost() ) {
             $param = $this->request->param();
+            var_dump($param);die;
             //注入c_id
             $param['c_id'] = generateUid();
             //批次归属商户号
             $param['belong_merchant'] = '123';
+            //获取订单号
+            $out_request_no = random(32,false);
+            $param['out_request_no'] = $out_request_no;
             $insert_id = CouponModel::insertGetId($param);
             if( $insert_id ) {
                 xn_add_admin_log('添加优惠券');

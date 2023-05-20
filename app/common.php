@@ -12,6 +12,38 @@ if(!function_exists('generateUid')){
     }
 }
 
+if(!function_exists('uniqueStr')){
+    /**
+     * 获得唯一字符串
+     *
+     * @return string 返回字符串
+     */
+    function uniqueStr() {
+        srand((double) microtime() * 1000000);
+        return md5(uniqid(rand()));
+    }
+}
+
+if(!function_exists('random')){
+    /**
+     * 获取随机数
+     * @param  integer  $length  长度
+     * @param  integer $numeric 是否包含字母
+     * @return string           随机数
+     */
+    function random($length, $numeric = 0) {
+        PHP_VERSION < '4.2.0' ? mt_srand((double) microtime() * 1000000) : mt_srand();
+        $seed = base_convert(md5(print_r($_SERVER, 1) . microtime()), 16, $numeric ? 10 : 35);
+        $seed = $numeric ? (str_replace('0', '', $seed) . '012340567890') : ($seed . 'zZ' . strtoupper($seed));
+        $hash = '';
+        $max = strlen($seed) - 1;
+        for ($i = 0; $i < $length; $i ++) {
+            $hash .= $seed[mt_rand(0, $max)];
+        }
+        return $hash;
+    }
+}
+
 
 /**
  * 字节数Byte转换为KB、MB、GB、TB
