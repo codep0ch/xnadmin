@@ -69,6 +69,7 @@ class Coupon extends AdminBase
                         'use_method' => 'OFF_LINE'
                     ],
                     'stock_send_rule' => [
+                        'max_coupons' => (int)$param['max_coupons'],
                         'max_coupons_per_user' => (int)$param['max_coupons_per_user'],
                         'prevent_api_abuse' => (bool)$param['prevent_api_abuse']
                     ],
