@@ -58,10 +58,11 @@ class Wechat
             $array = json_decode($resp->getBody(), true);
             return !empty($array['data'][0]['serial_no']);
         }catch (ClientException $exception) {
-            $this->error[] = $exception->getResponse()->getBody(true);
+            $this->error[] = $exception->getResponse()->getBody();
         } catch (\Exception $e) {
             $this->instance = new \stdClass();
             $this->error[] = $e->getMessage();
         }
+        return false;
     }
 }
