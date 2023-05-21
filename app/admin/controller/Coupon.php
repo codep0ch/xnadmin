@@ -5,6 +5,7 @@ use app\common\controller\AdminBase;
 use app\common\model\Coupon as CouponModel;
 use app\common\model\WechatSetting as WechatSettingModel;
 use GuzzleHttp\Exception\ClientException;
+use think\Exception;
 use think\facade\Db;
 use utils\Wechat;
 
@@ -46,7 +47,16 @@ class Coupon extends AdminBase
                 $wechat_setting_data['merchantCertificateSerial'],
                 $wechat_setting_data['platformCertificateFilePath']
             )->getInstance();
+
+            // 启动事务
+            Db::startTrans();
             try {
+                $insert_id = CouponModel::insertGetId($param);
+                if( $insert_id ) {
+                    xn_add_admin_log('添加优惠券');
+                } else {
+                    throw new Exception('添加失败');
+                }
                 $postData = [
                     'stock_name' => $param['stock_name'],
                     'belong_merchant' => $wechat_setting_data['merchantId'],
@@ -84,26 +94,20 @@ class Coupon extends AdminBase
                 }else{
                     unset($postData['coupon_use_rule']['fixed_normal_coupon']);
                 }
-                $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post([
+                $wechatInstance->chain('v3/marketing/busifavor/stocks')->post([
                     'json' => $postData
                     ]);
-                $array = json_decode($resp->getBody(), true);
-                var_dump($array);
+                // 提交事务
+                Db::commit();
+                $this->success('添加成功');
             }catch (\Exception $e){
+                // 回滚事务
+                Db::rollback();
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
                     echo $e->getResponse()->getBody();
                 }else{
                     echo $e->getMessage();
                 }
-            }
-
-
-            die;
-            $insert_id = CouponModel::insertGetId($param);
-            if( $insert_id ) {
-                xn_add_admin_log('添加优惠券');
-                $this->success('添加成功');
-            } else {
                 $this->error('添加失败');
             }
         }
