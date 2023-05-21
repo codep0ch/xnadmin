@@ -99,13 +99,13 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">是否开启自然人限制</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="natural_person_limit" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$user_data['status'] eq 1"}checked{/if} >
+                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="natural_person_limit" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$coupon_data['status'] eq 1"}checked{/if} >
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">可疑账号拦截</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="prevent_api_abuse" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$user_data['status'] eq 1"}checked{/if} >
+                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="prevent_api_abuse" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$coupon_data['status'] eq 1"}checked{/if} >
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -117,7 +117,7 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">状态</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="status" lay-skin="switch" lay-text="正常|禁止" value="1" {if condition="$user_data['status'] eq 1"}checked{/if} >
+                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="status" lay-skin="switch" lay-text="正常|禁止" value="1" {if condition="$coupon_data['status'] eq 1"}checked{/if} >
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -150,13 +150,25 @@
         laydate.render({
             elem: '#available_end_time'
         });
+        // 初始化select
+
+        var stock_type = "{$coupon_data.stock_type}";
+        if(stock_type == 'NORMAL'){
+            $('#NORMAL_BLOCK').css('display','block');
+            $('#DISCOUNT_BLOCK').css('display','none');
+        }else{
+            $('#NORMAL_BLOCK').css('display','none');
+            $('#DISCOUNT_BLOCK').css('display','block');
+        }
+
+
         // select 事件
         form.on('select(stock-type-filter)', function(data){
             var elem = data.elem; // 获得 select 原始 DOM 对象
             var value = data.value; // 获得被选中的值
             var othis = data.othis; // 获得 select 元素被替换后的 jQuery 对象
             layer.msg(this.innerHTML + ' 的 value: '+ value); // this 为当前选中 <option> 元素对象
-            if(value == '满减券'){
+            if(value == 'NORMAL'){
                 $('#NORMAL_BLOCK').css('display','block');
                 $('#DISCOUNT_BLOCK').css('display','none');
             }else{
