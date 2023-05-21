@@ -113,7 +113,8 @@ class Coupon extends AdminBase
                 }else{
                     echo $e->getMessage();
                 }
-                $this->error('添加失败:'.$e->getMessage().$e->getFile());
+                $this->error('添加失败:'.$e->getMessage());
+                var_dump($e);
             }
         }
         $coupon_data = CouponModel::select();
