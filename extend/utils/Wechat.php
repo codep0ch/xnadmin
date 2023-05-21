@@ -34,10 +34,7 @@ class Wechat
                     $platformCertificateSerial => $platformPublicKeyInstance,
                 ],
             ]);
-        }catch (ClientException $e) {
-            $this->instance = new \stdClass();
-            $this->error[] = $e->getMessage();
-        }catch (\Exception $e) {
+        }catch (ClientException|\Exception $e) {
             $this->instance = new \stdClass();
             $this->error[] = $e->getMessage();
         }
@@ -53,7 +50,7 @@ class Wechat
      * @return void
      */
     public function sign_test(){
-        echo 111111111111111;
+        var_dump($this->error);
         if(!empty($this->error)){
             return false;
         }
