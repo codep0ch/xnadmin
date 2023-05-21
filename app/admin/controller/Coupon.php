@@ -80,8 +80,8 @@ class Coupon extends AdminBase
 //                echo $e->getMessage(), PHP_EOL;
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
                     $r = $e->getResponse();
-                    echo $r->getStatusCode() . ' ' . $r->getReasonPhrase(), PHP_EOL;
-//                    echo $r->getBody(), PHP_EOL, PHP_EOL, PHP_EOL;
+//                    echo $r->getStatusCode() . ' ' . $r->getReasonPhrase(), PHP_EOL;
+                    echo $r->getBody(), PHP_EOL, PHP_EOL, PHP_EOL;
                 }
 //                echo $e->getTraceAsString(), PHP_EOL;
             }
