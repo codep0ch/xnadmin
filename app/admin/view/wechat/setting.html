@@ -102,6 +102,7 @@
         var status = "{$status}";
         if(status == 1){
             $('#checkArea').html('验证通过');
+            $('#checkArea').addClass('color','green');
         }else{
             $('#checkArea').html('验证失败:{$error}');
         }
