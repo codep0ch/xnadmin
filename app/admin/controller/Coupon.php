@@ -51,12 +51,20 @@ class Coupon extends AdminBase
                     'stock_name' => $param['stock_name'],
                     'belong_merchant' => $wechat_setting_data['merchantId'],
                     'goods_name' => $param['goods_name'],
-                    'stock_type' => 'NORMAL',
+                    'stock_type' => $param['stock_type'],
                     'coupon_use_rule' => [
                         'coupon_available_time' => [
                             'available_begin_time' => date('c',strtotime($param['coupon_available_time'])),
                             'available_end_time' => date('c',strtotime($param['available_end_time'])),
                             'available_day_after_receive' => (int)$param['available_day_after_receive']
+                        ],
+                        'fixed_normal_coupon' => [
+                            'discount_amount' => $param['discount_amount'],
+                            'transaction_minimum' => $param['transaction_minimum']
+                        ],
+                        'discount_coupon' => [
+                            'discount_percent' => $param['discount_percent'],
+                            'transaction_minimum' => $param['transaction_minimum']
                         ],
                         'use_method' => 'OFF_LINE'
                     ],

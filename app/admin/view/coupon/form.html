@@ -21,13 +21,13 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">批次名称</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="stock_name" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$user_data.username}">
+                                    <input type="text" name="stock_name" lay-verify="required" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.stock_name}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">商品范围</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="goods_name" placeholder="" autocomplete="off" class="layui-input" value="">
+                                    <input type="text" name="goods_name" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.goods_name}">
                                 </div>
                             </div>
 
@@ -36,13 +36,13 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">优惠金额</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="discount_amount" placeholder="" autocomplete="off" class="layui-input" value="">
+                                        <input type="text" name="discount_amount" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.discount_amount}">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">消费门槛</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="transaction_minimum" placeholder="" autocomplete="off" class="layui-input" value="">
+                                        <input type="text" name="transaction_minimum" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.transaction_minimum}">
                                     </div>
                                 </div>
                             </div>
@@ -53,13 +53,13 @@
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">折扣比例</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="discount_percent" placeholder="" autocomplete="off" class="layui-input" value="">
+                                        <input type="text" name="discount_percent" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.discount_percent}">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">消费门槛</label>
                                     <div class="layui-input-block">
-                                        <input type="text" name="transaction_minimum" placeholder="" autocomplete="off" class="layui-input" value="">
+                                        <input type="text" name="transaction_minimum" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.transaction_minimum}">
                                     </div>
                                 </div>
                             </div>
@@ -69,31 +69,31 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">券可核销开始时间</label>
                                 <div class="layui-input-block">
-                                    <input type="text" id="available_begin_time" name="available_begin_time" placeholder="" autocomplete="off" class="layui-input" lay-verify="date" value="">
+                                    <input type="text" id="available_begin_time" name="available_begin_time" placeholder="" autocomplete="off" class="layui-input" lay-verify="date" value="{$coupon_data.available_begin_time}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">券可核销结束时间</label>
                                 <div class="layui-input-block">
-                                    <input type="text" id="available_end_time" name="available_end_time" placeholder="" autocomplete="off" class="layui-input" lay-verify="date" value="">
+                                    <input type="text" id="available_end_time" name="available_end_time" placeholder="" autocomplete="off" class="layui-input" lay-verify="date" value="{$coupon_data.available_end_time}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">生效后N天内有效</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="available_day_after_receive" placeholder="" autocomplete="off" class="layui-input" value="">
+                                    <input type="text" name="available_day_after_receive" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.available_day_after_receive}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">批次最大发放个数</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="max_coupons" placeholder="" autocomplete="off" class="layui-input" value="">
+                                    <input type="text" name="max_coupons" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.max_coupons}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">用户最大可领个数</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="max_coupons_per_user" placeholder="" autocomplete="off" class="layui-input" value="">
+                                    <input type="text" name="max_coupons_per_user" placeholder="" autocomplete="off" class="layui-input" value="{$coupon_data.max_coupons_per_user}">
                                 </div>
                             </div>
                             <div class="layui-form-item">
