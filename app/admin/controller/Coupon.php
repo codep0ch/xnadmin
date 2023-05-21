@@ -52,29 +52,29 @@ class Coupon extends AdminBase
                     'belong_merchant' => $wechat_setting_data['merchantId'],
                     'goods_name' => $param['goods_name'],
                     'stock_type' => $param['stock_type'],
-                    'coupon_use_rule' => (Object)[
-                        'coupon_available_time' => (Object)[
+                    'coupon_use_rule' => [
+                        'coupon_available_time' => [
                             'available_begin_time' => date('c',strtotime($param['coupon_available_time'])),
                             'available_end_time' => date('c',strtotime($param['available_end_time'])),
                             'available_day_after_receive' => (int)$param['available_day_after_receive']
                         ],
-                        'fixed_normal_coupon' => (Object)[
+                        'fixed_normal_coupon' => [
                             'discount_amount' => (int)$param['discount_amount'],
                             'transaction_minimum' => (int)$param['transaction_minimum']
                         ],
-                        'discount_coupon' => (Object)[
+                        'discount_coupon' => [
                             'discount_percent' => (int)$param['discount_percent'],
                             'transaction_minimum' => (int)$param['transaction_minimum']
                         ],
                         'use_method' => 'OFF_LINE'
                     ],
-                    'stock_send_rule' => (Object)[
+                    'stock_send_rule' => [
                         'max_coupons' => (int)$param['max_coupons'],
                         'max_coupons_per_user' => (int)$param['max_coupons_per_user'],
                         'prevent_api_abuse' => (bool)$param['prevent_api_abuse']
                     ],
                     'out_request_no' => $out_request_no,
-                    'display_pattern_info' => (Object)[
+                    'display_pattern_info' => [
                         'description' => $param['description']
                     ],
                     'coupon_code_mode' => 'WECHATPAY_MODE'
@@ -84,6 +84,7 @@ class Coupon extends AdminBase
                 }else{
                     unset($postData['coupon_use_rule']['fixed_normal_coupon']);
                 }
+                $postData = arrayToObject($postData);
                 var_dump($postData);
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post([
                     'json' => $postData
