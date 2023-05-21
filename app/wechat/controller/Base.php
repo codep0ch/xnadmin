@@ -17,7 +17,7 @@ class Base extends \app\common\controller\Base
         ];
 
         $app = Factory::officialAccount($config);
-        echo $app->access_token;die;
+        echo $app->access_token->getToken();;die;
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
             // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
