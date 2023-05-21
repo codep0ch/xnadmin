@@ -104,13 +104,13 @@
                             <div class="layui-form-item">
                                 <label class="layui-form-label">是否开启自然人限制</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="natural_person_limit" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$coupon_data['status'] eq 1"}checked{/if} >
+                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="natural_person_limit" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$coupon_data['natural_person_limit'] eq 1"}checked{/if} >
                                 </div>
                             </div>
                             <div class="layui-form-item">
                                 <label class="layui-form-label">可疑账号拦截</label>
                                 <div class="layui-input-block">
-                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="prevent_api_abuse" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$coupon_data['status'] eq 1"}checked{/if} >
+                                    <input type="checkbox" lay-verify="required" lay-filter="status" name="prevent_api_abuse" lay-skin="switch" lay-text="开启|关闭" value="1" {if condition="$coupon_data['prevent_api_abuse'] eq 1"}checked{/if} >
                                 </div>
                             </div>
                             <div class="layui-form-item">
