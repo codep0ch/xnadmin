@@ -44,7 +44,7 @@ class Coupon extends AdminBase
                 $wechat_setting_data['merchantPrivateKeyFile'],
                 $wechat_setting_data['merchantCertificateSerial'],
                 $wechat_setting_data['platformCertificateFilePath']
-            );
+            )->getInstance();
             $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post();
             $array = json_decode($resp->getBody(), true);
             die;
