@@ -52,10 +52,10 @@ class Coupon extends AdminBase
             Db::startTrans();
             try {
                 $insert_id = CouponModel::insertGetId($param);
-                if( $insert_id ) {
+                if($insert_id) {
                     xn_add_admin_log('添加优惠券');
                 } else {
-                    throw new Exception('添加失败');
+                    throw new Exception('添加失败,数据无法写入');
                 }
                 $postData = [
                     'stock_name' => $param['stock_name'],
