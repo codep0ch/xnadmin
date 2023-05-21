@@ -104,7 +104,8 @@ class Coupon extends AdminBase
                 }
                 // 提交事务
                 Db::commit();
-                
+                throw new Exception('断点1');
+                $this->success('添加成功');
             }catch (\Exception $e){
                 // 回滚事务
                 Db::rollback();
