@@ -108,8 +108,7 @@ abstract class Base
     protected function success($msg = '', string $url = null, $data = '', int $wait = 1, array $header = [])
     {
         if (is_null($url) && isset($_SERVER["HTTP_REFERER"])) {
-            //$url = $_SERVER["HTTP_REFERER"];
-            $url = '';
+            $url = $_SERVER["HTTP_REFERER"];
         } elseif ($url) {
             $url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : app('route')->buildUrl($url);
         }
