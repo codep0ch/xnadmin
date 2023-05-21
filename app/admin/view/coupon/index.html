@@ -40,11 +40,9 @@
                 <a href="{:url('edit',array('id'=>$vo['id']))}" data-width="600px" data-height="450px" title="修改用户信息" class="layui-btn layui-btn-normal layui-btn-xs">
                     <i class="layui-icon layui-icon-edit"></i>修改
                 </a>
-                {if condition="$vo['id'] neq 1"}
-                <a href="{:Url('delete',array('id'=>$vo['id']))}" title="确认要删除【{$vo.username}】吗？" class="layui-btn layui-btn-danger layui-btn-xs xn_delete">
-                    <i class="layui-icon layui-icon-delete"></i>删除
+                <a href="{:url('edit',array('id'=>$vo['id']))}" data-width="600px" data-height="450px" title="修改用户信息" class="layui-btn layui-btn layui-btn-xs">
+                    <i class="layui-icon layui-icon-cols"></i>生成二维码
                 </a>
-                {/if}
             </td>
         </tr>
         {/foreach}
