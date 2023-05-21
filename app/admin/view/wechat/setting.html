@@ -49,6 +49,18 @@
                                 <input type="text" name="apiv3Key" value="{$wechat_setting_data.apiv3Key}"  autocomplete="off" class="layui-input">
                             </div>
                         </div>
+                        <div class="layui-bg" style="padding: 16px;">
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-md12">
+                                    <div class="layui-card">
+                                        <div class="layui-card-header">微信支付参数验证</div>
+                                        <div class="layui-card-body" id="checkArea">
+                                            验证中...{$status}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">微信公众号Appid</label>
                             <div class="layui-input-block">
@@ -66,18 +78,6 @@
                                 <button type="submit" class="layui-btn">确认修改</button>
                             </div>
                         </div>
-                            <div class="layui-bg" style="padding: 16px;">
-                                <div class="layui-row layui-col-space15">
-                                    <div class="layui-col-md12">
-                                        <div class="layui-card">
-                                            <div class="layui-card-header">微信参数验证</div>
-                                            <div class="layui-card-body" id="checkArea">
-                                                验证中...{$status}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </form>
                     </div>
 
