@@ -84,11 +84,11 @@ class Coupon extends AdminBase
                 }else{
                     unset($postData['coupon_use_rule']['fixed_normal_coupon']);
                 }
-                var_dump($postData);
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post([
                     'json' => $postData
                     ]);
-//                $array = json_decode($resp->getBody(), true);
+                $array = json_decode($resp->getBody(), true);
+                var_dump($array);
             }catch (\Exception $e){
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
                     echo $e->getResponse()->getBody();
