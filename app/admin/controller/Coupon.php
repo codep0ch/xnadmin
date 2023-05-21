@@ -102,6 +102,7 @@ class Coupon extends AdminBase
                 $this->success('添加成功');
             }catch (\Exception $e){
                 // 回滚事务
+                echo 11111111111111;
                 Db::rollback();
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
                     echo $e->getResponse()->getBody();
