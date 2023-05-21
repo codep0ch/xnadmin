@@ -156,6 +156,13 @@
             var value = data.value; // 获得被选中的值
             var othis = data.othis; // 获得 select 元素被替换后的 jQuery 对象
             layer.msg(this.innerHTML + ' 的 value: '+ value); // this 为当前选中 <option> 元素对象
+            if(value == '满减券'){
+                $('#NORMAL_BLOCK').css('display','block');
+                $('#DISCOUNT_BLOCK').css('display','none');
+            }else{
+                $('#NORMAL_BLOCK').css('display','none');
+                $('#DISCOUNT_BLOCK').css('display','block');
+            }
         });
     });
 </script>
