@@ -59,8 +59,8 @@
                                     <div class="layui-col-md12">
                                         <div class="layui-card">
                                             <div class="layui-card-header">卡片面板</div>
-                                            <div class="layui-card-body">
-                                                <div class="layui-form-mid layui-text-em"id="checkBtn">验证中...{$status}</div>
+                                            <div class="layui-card-body" id="checkArea">
+                                                验证中...{$status}
                                             </div>
                                         </div>
                                     </div>
@@ -101,9 +101,9 @@
         });
         var status = "{$status}";
         if(status == 1){
-            $('#checkBtn').html('验证通过');
+            $('#checkArea').html('验证通过');
         }else{
-            $('#checkBtn').html('验证失败:{$error}');
+            $('#checkArea').html('验证失败:{$error}');
         }
     });
 </script>
