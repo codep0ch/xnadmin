@@ -53,6 +53,7 @@ class Wechat
      * @return void
      */
     public function sign_test(){
+        echo 111111111111111;
         if(!empty($this->error)){
             return false;
         }
