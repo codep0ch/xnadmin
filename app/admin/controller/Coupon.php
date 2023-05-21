@@ -146,6 +146,7 @@ class Coupon extends AdminBase
         }
         $id = $this->request->get('id');
         $coupon_data = CouponModel::select(['id' => $id]);
+        var_dump($coupon_data);
         return view('form',['coupon_data' => $coupon_data]);
     }
 
