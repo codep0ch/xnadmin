@@ -39,14 +39,16 @@ class Coupon extends AdminBase
 
             //创建微信实例
             $wechat_setting_data = WechatSettingModel::find(1);
-            $wechatInstance = (new \utils\Wechat())->createWechatPay(
+            $wechat = (new \utils\Wechat())->createWechatPay(
                 $wechat_setting_data['merchantId'],
                 $wechat_setting_data['merchantPrivateKeyFile'],
                 $wechat_setting_data['merchantCertificateSerial'],
                 $wechat_setting_data['platformCertificateFilePath']
-            )->getInstance();
+            );
+            $wechatInstance = $wechat->->getInstance();
             $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post();
             $array = json_decode($resp->getBody(), true);
+            var_dump($wechat->getError());
             die;
             $insert_id = CouponModel::insertGetId($param);
             if( $insert_id ) {
