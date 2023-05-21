@@ -34,7 +34,7 @@ class Wechat
                     $platformCertificateSerial => $platformPublicKeyInstance,
                 ],
             ]);
-        }catch (ClientException $exception) {
+        } catch (ClientException $exception) {
             $this->error[] = $exception->getMessage();
         } catch (\Exception $e) {
             $this->instance = new \stdClass();
@@ -60,7 +60,7 @@ class Wechat
             $resp = $this->instance->chain('v3/certificates')->get();
             $array = json_decode($resp->getBody(), true);
             return !empty($array['data'][0]['serial_no']);
-        }catch (ClientException $exception) {
+        } catch (ClientException $exception) {
             $this->error[] = $exception->getMessage();
         } catch (\Exception $e) {
             $this->instance = new \stdClass();

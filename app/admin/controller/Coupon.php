@@ -4,6 +4,7 @@ namespace app\admin\controller;
 use app\common\controller\AdminBase;
 use app\common\model\Coupon as CouponModel;
 use app\common\model\WechatSetting as WechatSettingModel;
+use GuzzleHttp\Exception\ClientException;
 use think\facade\Db;
 use utils\Wechat;
 
@@ -73,6 +74,8 @@ class Coupon extends AdminBase
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post();
                 $array = json_decode($resp->getBody(), true);
                 var_dump($array);
+            }catch (ClientException $exception) {
+                var_dump($exception->getMessage());
             }catch (\Exception $e){
                 var_dump($e->getMessage());
             }
