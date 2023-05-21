@@ -1,8 +1,10 @@
 <?php
 namespace utils;
+use GuzzleHttp\Exception\ClientException;
 use WeChatPay\Builder;
 use WeChatPay\Crypto\Rsa;
 use WeChatPay\Util\PemUtil;
+use GuzzleHttp\Http\Exception\ClientErrorResponseException;
 class Wechat
 {
     public $instance = null;
@@ -32,7 +34,10 @@ class Wechat
                     $platformCertificateSerial => $platformPublicKeyInstance,
                 ],
             ]);
-        }catch (\Exception $e){
+        }catch (ClientException $e) {
+            $this->instance = new \stdClass();
+            $this->error[] = $e->getMessage();
+        }catch (\Exception $e) {
             $this->instance = new \stdClass();
             $this->error[] = $e->getMessage();
         }
