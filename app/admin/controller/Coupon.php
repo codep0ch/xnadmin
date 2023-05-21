@@ -13,7 +13,12 @@ class Coupon extends AdminBase
 {
     public function index()
     {
-        $list = CouponModel::select();
+        $param = $this->request->param();
+        $model = new CouponModel();
+        if( $param['start_date']!=''&&$param['end_date']!='' ) {
+            $model = $model->whereBetweenTime('create_time',$param['start_date'],$param['end_date']);
+        }
+        $list = $model->order('id desc')->paginate(['query' => $param]);
         return view('',['list'=>$list]);
     }
 
