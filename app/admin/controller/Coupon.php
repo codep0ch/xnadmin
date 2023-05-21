@@ -47,10 +47,10 @@ class Coupon extends AdminBase
                 $wechat_setting_data['merchantCertificateSerial'],
                 $wechat_setting_data['platformCertificateFilePath']
             )->getInstance();
-            
+
+            // 启动事务
+            Db::startTrans();
             try {
-                // 启动事务
-                Db::startTrans();
                 $insert_id = CouponModel::insertGetId($param);
                 if($insert_id) {
                     xn_add_admin_log('添加优惠券');
@@ -102,9 +102,9 @@ class Coupon extends AdminBase
                 if(empty($stock_id)){
                     throw new Exception('微信返回创建失败');
                 }
+                throw new Exception('断点1');
                 // 提交事务
                 Db::commit();
-                throw new Exception('断点1');
                 $this->success('添加成功');
             } catch (\Exception $e){
                 // 回滚事务
