@@ -139,9 +139,9 @@ class Coupon extends AdminBase
             $result = CouponModel::update($param);
             if( $result ) {
                 xn_add_admin_log('修改管理员信息');
-                $this->success('操作成功');
+                $this->success('操作成功', '/admin/coupon/index');
             } else {
-                $this->error('操作失败');
+                $this->error('操作失败','/admin/coupon/index');
             }
         }
         $id = $this->request->get('id');
