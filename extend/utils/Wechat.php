@@ -64,10 +64,9 @@ class Wechat
             return !empty($array['data'][0]['serial_no']);
         } catch (\Exception $e) {
             if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
-                echo 111;
+                var_dump($e->getResponse()->getBody());
                 $this->error[] = $e->getResponse()->getBody();
             }else{
-                echo 222;
                 $this->error[] = $e->getMessage();
             }
         }
