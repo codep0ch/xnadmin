@@ -3,6 +3,7 @@ namespace app\admin\controller;
 
 use app\common\controller\AdminBase;
 use app\common\model\Coupon as CouponModel;
+use app\common\model\WechatSetting as WechatSettingModel;
 use think\facade\Db;
 use utils\Wechat;
 
@@ -37,12 +38,15 @@ class Coupon extends AdminBase
             $param['out_request_no'] = $out_request_no;
 
             //创建微信实例
-            $wechat = new Wechat();
-
-            //进行签名测试,线上环境需去除该行代码
-            if($wechat->createWechatPay()->sign_test()){
-                echo json_encode(['status' => '签名通过']);
-            }
+            $wechat_setting_data = WechatSettingModel::find(1);
+            $wechatInstance = (new \utils\Wechat())->createWechatPay(
+                $wechat_setting_data['merchantId'],
+                $wechat_setting_data['merchantPrivateKeyFile'],
+                $wechat_setting_data['merchantCertificateSerial'],
+                $wechat_setting_data['platformCertificateFilePath']
+            );
+            $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post();
+            $array = json_decode($resp->getBody(), true);
             die;
             $insert_id = CouponModel::insertGetId($param);
             if( $insert_id ) {

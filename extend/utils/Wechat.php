@@ -46,6 +46,9 @@ class Wechat
     public function getError(){
         return $this->error;
     }
+    public function getInstance(){
+        return $this->instance;
+    }
 
     /**
      * 该方法用于验证是否成功
