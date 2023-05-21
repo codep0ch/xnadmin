@@ -71,6 +71,7 @@ class Coupon extends AdminBase
                     ],
                     'coupon_code_mode' => 'WECHATPAY_MODE'
                 ];
+                var_dump($postData);
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post([
                     'json' => json_encode($postData)
                     ]);
