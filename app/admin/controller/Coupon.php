@@ -56,6 +56,11 @@ class Coupon extends AdminBase
             // 启动事务
             Db::startTrans();
             try {
+                if($param['stock_type'] == 'NORMAL'){
+                    $param['transaction_minimum'] = $param['n_transaction_minimum'];
+                }else{
+                    $param['transaction_minimum'] = $param['d_transaction_minimum'];
+                }
                 $insert_id = CouponModel::insertGetId($param);
                 if($insert_id) {
                     xn_add_admin_log('添加优惠券');
