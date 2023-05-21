@@ -113,7 +113,6 @@ abstract class Base
         } elseif ($url) {
             $url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : app('route')->buildUrl($url);
         }
-        echo '到这里正常？';
         $result = [
             'code' => 1,
             'msg'  => $msg,
@@ -128,7 +127,7 @@ abstract class Base
         } else if ($type == 'json') {
             $response = json($result);
         }
-
+        echo '到这里正常？';
         throw new HttpResponseException($response);
     }
 
