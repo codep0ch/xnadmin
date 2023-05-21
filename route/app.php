@@ -4,4 +4,4 @@ Route::get('think', function () {
     return 'hello,ThinkPHP6!';
 });
 
-Route::any('auth2', '/Auth/init2');
+//Route::any('auth2', '/Auth/init2');
