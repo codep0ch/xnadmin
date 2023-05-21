@@ -154,46 +154,14 @@ class Coupon extends AdminBase
         return view('form',['coupon_data' => $coupon_data]);
     }
 
-    /**
-     * 删除节点
-     */
-    public function delete()
-    {
-        $id = intval($this->request->get('id'));
-        !($id>1) && $this->error('参数错误');
-        AuthGroupAccess::where('admin_id', $id)->delete();
-        AdminModel::destroy($id);
-        xn_add_admin_log('删除管理员');
-        $this->success('删除成功');
-    }
+   public function url(){
+       $id = $this->request->get('id');
+       $url = "";
 
-    /**
-     * 修改资料
-     * @return \think\response\View
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\DbException
-     * @throws \think\db\exception\ModelNotFoundException
-     */
-    public function info()
-    {
-        if( $this->request->isPost() ) {
-            $param = $this->request->param();
-            $id = $this->getAdminId();
-            if( $param['password']!='' ){
-                $param['password'] = xn_encrypt($param['password']);
-            } else {
-                unset($param['password']);
-            }
-            $result = AdminModel::where('id',$id)->update($param);
-            if( $result ) {
-                xn_add_admin_log('修改个人资料');
-                $this->success('操作成功');
-            } else {
-                $this->error('操作失败');
-            }
-        }
-        $id = $this->getAdminId();
-        $user_data = AdminModel::find($id);
-        return view('', ['user_data'=>$user_data]);
-    }
+
+
+
+       return view('url',['url' => $url]);
+   }
+
 }
