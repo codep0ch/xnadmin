@@ -9,6 +9,8 @@
             <th><b>券类型</b></th>
             <th><b>优惠金额</b></th>
             <th><b>折扣比例</b></th>
+            <th><b>核销开始时间</b></th>
+            <th><b>核销结束时间</b></th>
             <th><b>状态</b></th>
             <th style="padding: 0 15px;line-height: 40px;">
                 <b>操作</b>
@@ -28,6 +30,8 @@
             {/if}
             <td>{$vo.discount_amount}</td>
             <td>{$vo.discount_percent}</td>
+            <td>{$vo.available_begin_time}</td>
+            <td>{$vo.available_end_time}</td>
             <td class="layui-form">
                 <input type="checkbox" lay-verify="required" lay-filter="status" name="status" data-id="{$vo.id}"
                        lay-skin="switch" lay-text="正常|禁止" value="1" {if condition="$vo['status'] eq 1"}checked{/if} >
