@@ -24,13 +24,6 @@
             {else}
             <td>折扣券</td>
             {/if}
-
-
-            <td>
-                {foreach name="vo.auth_group_access" item="v"}
-                <span class="layui-badge layui-bg-orange">{$v.title}</span>
-                {/foreach}
-            </td>
             <td class="layui-form">
                 <input type="checkbox" lay-verify="required" lay-filter="status" name="status" data-id="{$vo.id}"
                        lay-skin="switch" lay-text="正常|禁止" value="1" {if condition="$vo['status'] eq 1"}checked{/if} >
