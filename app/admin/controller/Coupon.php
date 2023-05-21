@@ -62,8 +62,8 @@ class Coupon extends AdminBase
                     ],
                     'stock_send_rule' => [
                         'stock_send_rule' => $param['stock_send_rule'],
-                        'max_coupons_per_user' => $param['max_coupons_per_user'],
-                        'prevent_api_abuse' => $param['prevent_api_abuse']
+                        'max_coupons_per_user' => (int)$param['max_coupons_per_user'],
+                        'prevent_api_abuse' => (int)$param['prevent_api_abuse']
                     ],
                     'out_request_no' => $out_request_no,
                     'display_pattern_info' => [
