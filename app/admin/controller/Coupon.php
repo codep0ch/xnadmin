@@ -79,6 +79,11 @@ class Coupon extends AdminBase
                     ],
                     'coupon_code_mode' => 'WECHATPAY_MODE'
                 ];
+                if($param['stock_type'] == 'NORMAL'){
+                    unset($postData['coupon_use_rule']['discount_coupon']);
+                }else{
+                    unset($postData['coupon_use_rule']['fixed_normal_coupon']);
+                }
                 var_dump($postData);
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post([
                     'json' => $postData
