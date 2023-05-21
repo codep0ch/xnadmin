@@ -37,7 +37,7 @@
                        lay-skin="switch" lay-text="正常|禁止" value="1" {if condition="$vo['status'] eq 1"}checked{/if} >
             </td>
             <td>
-                <a href="{:url('edit',array('id'=>$vo['id']))}" data-width="600px" data-height="450px" title="修改用户信息" class="layui-btn layui-btn-normal layui-btn-xs xn_open">
+                <a href="{:url('edit',array('id'=>$vo['id']))}" data-width="600px" data-height="450px" title="修改用户信息" class="layui-btn layui-btn-normal layui-btn-xs">
                     <i class="layui-icon layui-icon-edit"></i>修改
                 </a>
                 {if condition="$vo['id'] neq 1"}
