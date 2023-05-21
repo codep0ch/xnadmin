@@ -88,6 +88,12 @@
                 layer.msg('上传成功');
             }
         });
+        var status = "{$status}";
+        if(status == 1){
+            $('#checkBtn').html('123');
+        }else{
+            $('#checkBtn').html('456');
+        }
     });
 </script>
 {/block}
