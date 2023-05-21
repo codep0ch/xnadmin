@@ -1,12 +1,14 @@
 <?php
 namespace app\wechat\controller;
+use app\common\model\WechatSetting as WechatSettingModel;
 use EasyWeChat\Factory;
 class Base
 {
     public function __construct(){
+        $wechat_setting_data = WechatSettingModel::find(1);
         $config = [
-            'app_id' => 'wx3cf0f39249eb0exx',
-            'secret' => 'f1c242f4f28f735d4687abb469072axx',
+            'app_id' => $wechat_setting_data['wechatAppid'],
+            'secret' => $wechat_setting_data['wechatAppSecret'],
 
             // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
             'response_type' => 'array',
