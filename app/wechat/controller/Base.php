@@ -7,7 +7,7 @@ class Base extends \app\common\controller\Base
     public function __construct(){
         $wechat_setting_data = WechatSettingModel::find(1);
         $config = [
-            'app_id' => $wechat_setting_data['wechatAppid'],
+            'app_id' => $wechat_setting_data['wechatAppId'],
             'secret' => $wechat_setting_data['wechatAppSecret'],
 
             // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
@@ -17,7 +17,6 @@ class Base extends \app\common\controller\Base
         ];
 
         $app = Factory::officialAccount($config);
-        $oauth = $app->oauth;
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
             // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
