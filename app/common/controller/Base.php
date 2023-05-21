@@ -127,6 +127,7 @@ abstract class Base
         } else if ($type == 'json') {
             $response = json($result);
         }
+        var_dump($response);die;
         throw new HttpResponseException($response);
     }
 
