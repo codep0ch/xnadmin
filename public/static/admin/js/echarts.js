@@ -11327,17 +11327,17 @@ var innerUniqueIndex = 0;
 function parseFinder(ecModel, finder, opt) {
     if (isString(finder)) {
         var obj = {};
-        obj[finder + 'Index'] = 0;
+        obj[finder + 'Auth'] = 0;
         finder = obj;
     }
 
     var defaultMainType = opt && opt.defaultMainType;
     if (defaultMainType
-        && !has(finder, defaultMainType + 'Index')
+        && !has(finder, defaultMainType + 'Auth')
         && !has(finder, defaultMainType + 'Id')
         && !has(finder, defaultMainType + 'Name')
     ) {
-        finder[defaultMainType + 'Index'] = 0;
+        finder[defaultMainType + 'Auth'] = 0;
     }
 
     var result = {};
@@ -18559,7 +18559,7 @@ var ComponentModel = Model.extend({
     getReferringComponents: function (mainType) {
         return this.ecModel.queryComponents({
             mainType: mainType,
-            index: this.get(mainType + 'Index', true),
+            index: this.get(mainType + 'Auth', true),
             id: this.get(mainType + 'Id', true)
         });
     }
@@ -19918,7 +19918,7 @@ var GlobalModel = Model.extend({
         return doFilter(filterBySubType(result, condition));
 
         function getQueryCond(q) {
-            var indexAttr = mainType + 'Index';
+            var indexAttr = mainType + 'Auth';
             var idAttr = mainType + 'Id';
             var nameAttr = mainType + 'Name';
             return q && (
@@ -24692,7 +24692,7 @@ function updateDirectly(ecIns, method, payload, mainType, subType) {
 
     var query = {};
     query[mainType + 'Id'] = payload[mainType + 'Id'];
-    query[mainType + 'Index'] = payload[mainType + 'Index'];
+    query[mainType + 'Auth'] = payload[mainType + 'Auth'];
     query[mainType + 'Name'] = payload[mainType + 'Name'];
 
     var condition = {mainType: mainType, query: query};
@@ -27112,7 +27112,7 @@ listProto.each = function (dims, cb, stack, context) {
                 for (; k < dimSize; k++) {
                     value[k] = this.get(dims[k], i, stack);
                 }
-                // Index
+                // Auth
                 value[k] = i;
                 cb.apply(context, value);
         }
@@ -32647,7 +32647,7 @@ Chart.extend({
                 if (el) {
                     updatedDataInfo.push({
                         el: el,
-                        ptIdx: i    // Index of points
+                        ptIdx: i    // Auth of points
                     });
                 }
             }
@@ -33128,7 +33128,7 @@ Axis2D.prototype = {
     constructor: Axis2D,
 
     /**
-     * Index of axis, can be used as key
+     * Auth of axis, can be used as key
      */
     index: 0,
     /**
@@ -34002,7 +34002,7 @@ gridProto._initCartesian = function (gridModel, ecModel, api) {
             // Inject grid info axis
             axis.grid = this;
 
-            // Index of axis, can be used as key
+            // Auth of axis, can be used as key
             axis.index = idx;
 
             this._axesList.push(axis);
@@ -34110,7 +34110,7 @@ function findAxesModels(seriesModel, ecModel) {
         if (__DEV__) {
             if (!axisModel) {
                 throw new Error(axisType + ' "' + retrieve(
-                    seriesModel.get(axisType + 'Index'),
+                    seriesModel.get(axisType + 'Auth'),
                     seriesModel.get(axisType + 'Id'),
                     0
                 ) + '" not found');
@@ -34189,7 +34189,7 @@ function makeAxisEventDataBase(axisModel) {
     var eventData = {
         componentType: axisModel.mainType
     };
-    eventData[axisModel.mainType + 'Index'] = axisModel.componentIndex;
+    eventData[axisModel.mainType + 'Auth'] = axisModel.componentIndex;
     return eventData;
 }
 
@@ -34480,7 +34480,7 @@ var builders = {
             name: name,
             $vars: ['name']
         };
-        formatterParams[mainType + 'Index'] = axisModel.componentIndex;
+        formatterParams[mainType + 'Auth'] = axisModel.componentIndex;
 
         var textEl = new Text({
             // Id for animation
@@ -41199,7 +41199,7 @@ function Tree(hostModel, levelOptions, leavesOption) {
     this.data;
 
     /**
-     * Index of each item is the same as the raw index of coresponding list item.
+     * Auth of each item is the same as the raw index of coresponding list item.
      * @private
      * @type {Array.<module:echarts/data/Tree~TreeNode}
      */
@@ -65655,7 +65655,7 @@ var INCLUDE_FINDER_MAIN_TYPES = [
 /**
  * [option in constructor]:
  * {
- *     Index/Id/Name of geo, xAxis, yAxis, grid: See util/model#parseFinder.
+ *     Auth/Id/Name of geo, xAxis, yAxis, grid: See util/model#parseFinder.
  * }
  *
  *
@@ -65696,7 +65696,7 @@ var INCLUDE_FINDER_MAIN_TYPES = [
  * {
  *     panelId: Used to locate coordInfo directly. If user inpput, no panelId.
  *     brushType: determine how to convert to/from coord('rect' or 'polygon' or 'lineX/Y').
- *     Index/Id/Name of geo, xAxis, yAxis, grid: See util/model#parseFinder.
+ *     Auth/Id/Name of geo, xAxis, yAxis, grid: See util/model#parseFinder.
  *     range: pixel range.
  *     coordRange: representitive coord range (the first one of coordRanges).
  *     coordRanges: <Array> coord ranges, used in multiple cartesian in one grid.
@@ -65704,7 +65704,7 @@ var INCLUDE_FINDER_MAIN_TYPES = [
  */
 
 /**
- * @param {Object} option contains Index/Id/Name of xAxis/yAxis/geo/grid
+ * @param {Object} option contains Auth/Id/Name of xAxis/yAxis/geo/grid
  *        Each can be {number|Array.<number>}. like: {xAxisIndex: [3, 4]}
  * @param {module:echarts/model/Global} ecModel
  * @param {Object} [opt]
@@ -76388,7 +76388,7 @@ proto$5.onclick = function (ecModel, api, type) {
                 var axisType = axisDim + 'Axis';
                 var axisModel = ecModel.queryComponents({
                     mainType: axisType,
-                    index: seriesModel.get(name + 'Index'),
+                    index: seriesModel.get(name + 'Auth'),
                     id: seriesModel.get(name + 'Id')
                 })[0];
                 var axisIndex = axisModel.componentIndex;
@@ -77262,7 +77262,7 @@ registerPreprocessor(function (option) {
         }
 
         // Try not to modify model, because it is not merged yet.
-        var axisIndicesName = axisName + 'Index';
+        var axisIndicesName = axisName + 'Auth';
         var givenAxisIndices = dataZoomOpt[axisIndicesName];
         if (givenAxisIndices != null
             && givenAxisIndices != 'all'
