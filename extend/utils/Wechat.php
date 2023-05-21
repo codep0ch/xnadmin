@@ -47,16 +47,17 @@ class Wechat
 
     /**
      * 该方法用于验证是否成功
-     * @return void
+     * @return bool
      */
     public function sign_test(){
-        var_dump($this->error);
-        if(!empty($this->error)){
-            return false;
-        }
         // 发送请求
-        $resp = $this->instance->chain('v3/certificates')->get();
-        $array = json_decode($resp->getBody(), true);
-        return !empty($array['data'][0]['serial_no']);
+        try{
+            $resp = $this->instance->chain('v3/certificates')->get();
+            $array = json_decode($resp->getBody(), true);
+            return !empty($array['data'][0]['serial_no']);
+        }catch (ClientException|\Exception $e) {
+            $this->instance = new \stdClass();
+            $this->error[] = $e->getMessage();
+        }
     }
 }
