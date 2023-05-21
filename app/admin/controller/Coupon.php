@@ -76,14 +76,9 @@ class Coupon extends AdminBase
                     ]);
 //                $array = json_decode($resp->getBody(), true);
             }catch (\Exception $e){
-                // 进行错误处理
-//                echo $e->getMessage(), PHP_EOL;
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
-                    $r = $e->getResponse();
-//                    echo $r->getStatusCode() . ' ' . $r->getReasonPhrase(), PHP_EOL;
-                    echo $r->getBody(), PHP_EOL, PHP_EOL, PHP_EOL;
+                    echo $e->getResponse()->getBody();
                 }
-//                echo $e->getTraceAsString(), PHP_EOL;
             }
 
 
