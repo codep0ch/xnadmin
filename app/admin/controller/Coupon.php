@@ -102,7 +102,6 @@ class Coupon extends AdminBase
                 if(empty($stock_id)){
                     throw new Exception('微信返回创建失败');
                 }
-                throw new Exception('断点1');
                 // 提交事务
                 Db::commit();
                 $this->success('添加成功');
@@ -114,7 +113,7 @@ class Coupon extends AdminBase
                 }else{
                     echo $e->getMessage();
                 }
-                $this->error('添加失败:'.$e->getMessage());
+                $this->error('添加失败:'.$e->getMessage().$e->getCode());
             }
         }
         $coupon_data = CouponModel::select();
