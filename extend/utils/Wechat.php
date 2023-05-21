@@ -34,11 +34,13 @@ class Wechat
                     $platformCertificateSerial => $platformPublicKeyInstance,
                 ],
             ]);
-        } catch (ClientException $exception) {
-            $this->error[] = $exception->getMessage();
         } catch (\Exception $e) {
             $this->instance = new \stdClass();
-            $this->error[] = $e->getMessage();
+            if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
+                $this->error[] = $e->getResponse()->getBody();
+            }else{
+                $this->error[] = $e->getMessage();
+            }
         }
         return $this;
     }
@@ -60,11 +62,13 @@ class Wechat
             $resp = $this->instance->chain('v3/certificates')->get();
             $array = json_decode($resp->getBody(), true);
             return !empty($array['data'][0]['serial_no']);
-        } catch (ClientException $exception) {
-            $this->error[] = $exception->getMessage();
         } catch (\Exception $e) {
             $this->instance = new \stdClass();
-            $this->error[] = $e->getMessage();
+            if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
+                $this->error[] = $e->getResponse()->getBody();
+            }else{
+                $this->error[] = $e->getMessage();
+            }
         }
         return false;
     }

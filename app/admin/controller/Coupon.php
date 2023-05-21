@@ -78,6 +78,8 @@ class Coupon extends AdminBase
             }catch (\Exception $e){
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
                     echo $e->getResponse()->getBody();
+                }else{
+                    echo $e->getMessage();
                 }
             }
 
