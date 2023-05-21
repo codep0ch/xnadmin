@@ -97,7 +97,7 @@ class Coupon extends AdminBase
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post([
                     'json' => $postData
                     ]);
-                var_dump($resp->getBody());
+                var_dump(json_decode($resp->getBody(), true));
                 // 提交事务
                 Db::commit();
                 $this->success('添加成功');
