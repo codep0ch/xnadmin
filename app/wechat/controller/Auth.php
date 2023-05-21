@@ -1,7 +1,6 @@
 <?php
 namespace app\wechat\controller;
-
-use app\common\controller\Base;
+use app\wechat\controller\Base;
 
 class Auth extends Base
 {
