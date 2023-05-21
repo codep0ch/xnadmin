@@ -97,7 +97,11 @@ class Coupon extends AdminBase
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post([
                     'json' => $postData
                     ]);
-                var_dump(json_decode($resp->getBody(), true));
+                $respBody = json_decode($resp->getBody(), true);
+                $stock_id = $respBody['stock_id'];
+                if(empty($stock_id)){
+                    throw new Exception('微信返回创建失败');
+                }
                 // 提交事务
                 Db::commit();
                 $this->success('添加成功');
