@@ -121,8 +121,7 @@ class Coupon extends AdminBase
             }
             $this->success('添加成功');
         }
-        $coupon_data = CouponModel::select();
-        return view('form',['coupon_data'=>$coupon_data]);
+        return view('form',['coupon_data' => []]);
     }
 
     /**
@@ -136,25 +135,8 @@ class Coupon extends AdminBase
     {
         if( $this->request->isPost() ) {
             $param = $this->request->param();
-            $id = $param['id'];
-            $group_ids = $param['group_ids'];
 
-            //更新权限
-            if( !empty($group_ids) ) {
-                Db::name('auth_group_access')->where("admin_id",$id)->delete();
-
-                foreach( $group_ids as $group_id ) {
-                    AuthGroupAccess::create(['admin_id'=>$id,'group_id'=>$group_id]);
-                }
-            }
-
-            if( $param['password']!='' ){
-                $param['password'] = xn_encrypt($param['password']);
-            } else {
-                unset($param['password']);
-            }
-
-            $result = AdminModel::update($param);
+            $result = CouponModel::update($param);
             if( $result ) {
                 xn_add_admin_log('修改管理员信息');
                 $this->success('操作成功');
@@ -168,7 +150,8 @@ class Coupon extends AdminBase
             'group_data'=> AuthGroup::select(),
             'user_group_ids'=> Db::name('auth_group_access')->where("admin_id",$id)->column('group_id')
         ];
-        return view('form', $assign);
+        $coupon_data = CouponModel::select();
+        return view('form',['coupon_data' => $coupon_data]);
     }
 
     /**
