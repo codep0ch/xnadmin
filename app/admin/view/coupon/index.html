@@ -7,6 +7,8 @@
         <tr>
             <th><b>商家券批次名称</b></th>
             <th><b>券类型</b></th>
+            <th><b>优惠金额</b></th>
+            <th><b>折扣比例</b></th>
             <th><b>状态</b></th>
             <th style="padding: 0 15px;line-height: 40px;">
                 <b>操作</b>
@@ -20,10 +22,12 @@
         <tr>
             <td>{$vo.stock_name}</td>
             {if condition="$vo['stock_type'] neq 'NORMAL'"}
-            <td>满减券</td>
+                <td>满减券</td>
             {else}
-            <td>折扣券</td>
+                <td>折扣券</td>
             {/if}
+            <td>{$vo.discount_amount}</td>
+            <td>{$vo.discount_percent}</td>
             <td class="layui-form">
                 <input type="checkbox" lay-verify="required" lay-filter="status" name="status" data-id="{$vo.id}"
                        lay-skin="switch" lay-text="正常|禁止" value="1" {if condition="$vo['status'] eq 1"}checked{/if} >
