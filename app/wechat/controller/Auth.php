@@ -5,7 +5,7 @@ use app\common\controller\Base;
 
 class Auth extends Base
 {
-    public function Auth2()
+    public function init()
     {
         echo 'hello';
     }
