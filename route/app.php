@@ -14,4 +14,4 @@ Route::get('think', function () {
     return 'hello,ThinkPHP6!';
 });
 
-Route::get('wechat/login', 'wechat/Auth/Auth2');
+Route::get('wechat/auth2', 'wechat/Auth/Auth2');
