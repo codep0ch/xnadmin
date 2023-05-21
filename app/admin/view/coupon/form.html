@@ -153,12 +153,12 @@
         // 初始化select
 
         var stock_type = "{$coupon_data.stock_type}";
-        if(stock_type == 'NORMAL'){
-            $('#NORMAL_BLOCK').css('display','block');
-            $('#DISCOUNT_BLOCK').css('display','none');
-        }else{
+        if(stock_type == 'DISCOUNT'){
             $('#NORMAL_BLOCK').css('display','none');
             $('#DISCOUNT_BLOCK').css('display','block');
+        }else{
+            $('#NORMAL_BLOCK').css('display','block');
+            $('#DISCOUNT_BLOCK').css('display','none');
         }
 
 
