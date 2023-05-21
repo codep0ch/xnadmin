@@ -59,12 +59,12 @@ class Coupon extends AdminBase
                             'available_day_after_receive' => (int)$param['available_day_after_receive']
                         ],
                         'fixed_normal_coupon' => [
-                            'discount_amount' => $param['discount_amount'],
-                            'transaction_minimum' => $param['transaction_minimum']
+                            'discount_amount' => (int)$param['discount_amount'],
+                            'transaction_minimum' => (int)$param['transaction_minimum']
                         ],
                         'discount_coupon' => [
-                            'discount_percent' => $param['discount_percent'],
-                            'transaction_minimum' => $param['transaction_minimum']
+                            'discount_percent' => (int)$param['discount_percent'],
+                            'transaction_minimum' => (int)$param['transaction_minimum']
                         ],
                         'use_method' => 'OFF_LINE'
                     ],
