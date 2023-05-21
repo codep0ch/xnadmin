@@ -5,7 +5,12 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">添加优惠券</div>
+                <div class="layui-card-header">
+                    添加优惠券
+                    <span style="float: right">
+                    <a href="{:url('add')}" data-width="600px" data-height="450px" class="layui-btn layui-btn-sm" title="添加优惠券" target="right_content">添加优惠券</a>
+                </span>
+                </div>
                 <div class="layui-card-body" pad15="">
                     <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
                         <form action="{:request()->url()}" method="post" class="xn_ajax">
