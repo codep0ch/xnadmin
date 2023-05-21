@@ -145,12 +145,7 @@ class Coupon extends AdminBase
             }
         }
         $id = $this->request->get('id');
-        $assign = [
-            'user_data'=> AdminModel::find($id),
-            'group_data'=> AuthGroup::select(),
-            'user_group_ids'=> Db::name('auth_group_access')->where("admin_id",$id)->column('group_id')
-        ];
-        $coupon_data = CouponModel::select();
+        $coupon_data = CouponModel::select(['id' => $id]);
         return view('form',['coupon_data' => $coupon_data]);
     }
 
