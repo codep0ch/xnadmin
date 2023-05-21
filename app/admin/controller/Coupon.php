@@ -73,9 +73,8 @@ class Coupon extends AdminBase
                 ];
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post();
                 $array = json_decode($resp->getBody(), true);
-                var_dump($array);
             }catch (ClientException $exception) {
-                var_dump($exception->getMessage());
+                var_dump($exception);
             }catch (\Exception $e){
                 var_dump($e->getMessage());
             }
