@@ -61,6 +61,7 @@ class Coupon extends AdminBase
                 }else{
                     $param['transaction_minimum'] = $param['d_transaction_minimum'];
                 }
+                unset($param['n_transaction_minimum'], $param['d_transaction_minimum']);
                 $insert_id = CouponModel::insertGetId($param);
                 if($insert_id) {
                     xn_add_admin_log('添加优惠券');
