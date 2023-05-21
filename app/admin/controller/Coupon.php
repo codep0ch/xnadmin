@@ -54,7 +54,7 @@ class Coupon extends AdminBase
                     'stock_type' => $param['stock_type'],
                     'coupon_use_rule' => [
                         'coupon_available_time' => [
-                            'available_begin_time' => date('c',strtotime($param['coupon_available_time'])),
+                            'available_begin_time' => date('c',strtotime($param['available_begin_time'])),
                             'available_end_time' => date('c',strtotime($param['available_end_time'])),
                             'available_day_after_receive' => (int)$param['available_day_after_receive']
                         ],
