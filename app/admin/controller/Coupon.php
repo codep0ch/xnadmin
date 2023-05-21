@@ -46,6 +46,30 @@ class Coupon extends AdminBase
                 $wechat_setting_data['platformCertificateFilePath']
             )->getInstance();
             try {
+                $postData = [
+                    'stock_name' => $param['stock_name'],
+                    'belong_merchant' => $wechat_setting_data['merchantId'],
+                    'goods_name' => $param['goods_name'],
+                    'stock_type' => 'NORMAL',
+                    'coupon_use_rule' => [
+                        'coupon_available_time' => [
+                            'coupon_available_time' => $param['coupon_available_time'],
+                            'available_end_time' => $param['available_end_time'],
+                            'available_day_after_receive' => $param['available_day_after_receive']
+                        ],
+                        'use_method' => 'OFF_LINE'
+                    ],
+                    'stock_send_rule' => [
+                        'stock_send_rule' => $param['stock_send_rule'],
+                        'max_coupons_per_user' => $param['max_coupons_per_user'],
+                        'prevent_api_abuse' => $param['prevent_api_abuse']
+                    ],
+                    'out_request_no' => $out_request_no,
+                    'display_pattern_info' => [
+                        'description' => $param['description']
+                    ],
+                    'coupon_code_mode' => 'WECHATPAY_MODE'
+                ];
                 $resp = $wechatInstance->chain('v3/marketing/busifavor/stocks')->post();
                 $array = json_decode($resp->getBody(), true);
                 var_dump($array);
