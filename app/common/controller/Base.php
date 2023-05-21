@@ -127,7 +127,6 @@ abstract class Base
         } else if ($type == 'json') {
             $response = json($result);
         }
-        echo '到这里正常？';
         throw new HttpResponseException($response);
     }
 

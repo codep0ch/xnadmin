@@ -104,7 +104,6 @@ class Coupon extends AdminBase
                 }
                 // 提交事务
                 Db::commit();
-                $this->success('添加成功');
             } catch (\Exception $e){
                 // 回滚事务
                 Db::rollback();
@@ -115,6 +114,7 @@ class Coupon extends AdminBase
                 }
                 $this->error('添加失败:'.$e->getMessage());
             }
+            $this->success('添加成功');
         }
         $coupon_data = CouponModel::select();
         return view('form',['coupon_data'=>$coupon_data]);
