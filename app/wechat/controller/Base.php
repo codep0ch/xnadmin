@@ -2,9 +2,11 @@
 namespace app\wechat\controller;
 use app\common\model\WechatSetting as WechatSettingModel;
 use EasyWeChat\Factory;
+use think\App;
+
 class Base extends \app\common\controller\Base
 {
-    public function __construct(){
+    public function __construct(App $app){
         $wechat_setting_data = WechatSettingModel::find(1);
         $config = [
             'app_id' => $wechat_setting_data['wechatAppId'],
@@ -29,10 +31,6 @@ class Base extends \app\common\controller\Base
             $user = $_SESSION['wechat_user'];
             var_dump($user);
         }
-
-
-
-
-
+        parent::__construct($app);
     }
 }
