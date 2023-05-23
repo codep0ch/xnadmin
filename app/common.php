@@ -203,3 +203,11 @@ function xn_upload_multi($value,$file_name,$water=null,$thumb=null)
 php;
     return $html;
 }
+
+function commonApiReturn ($code, $data, $msg){
+    return json([
+        'code' => $code,
+        'data' => $data,
+        'msg' => $msg
+    ]);
+}

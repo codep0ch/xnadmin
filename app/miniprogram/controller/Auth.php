@@ -9,10 +9,10 @@ class Auth extends Base
         $code = $this->request->get('code');
         $resp = $this->instance->auth->session($code);
         $token = JWTAuth::builder($resp);
-        return json([
+        return commonApiReturn(200, [
             'token' => $token,
             'expire' => 7200,
             'expire_time' => date("Y-m-d H:i:s", time())
-        ]);
+        ], 'Success');
     }
 }
