@@ -6,9 +6,8 @@ class Auth extends Base
 {
     public function init()
     {
-        $code = $this->request->post('code');
+        $code = $this->request->get('code');
         $resp = $this->instance->auth->session($code);
-        echo 123;
         return json($resp);
     }
 }
