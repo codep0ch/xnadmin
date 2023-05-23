@@ -8,6 +8,6 @@ class Auth extends Base
     {
         $code = $this->request->post('code');
         $resp = $this->instance->auth->session($code);
-        return $resp;
+        return json($resp);
     }
 }
