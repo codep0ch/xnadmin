@@ -1,6 +1,6 @@
 <?php
-namespace app\wechat\controller;
-use app\wechat\controller\Base;
+namespace app\miniprogram\controller;
+use app\miniprogram\controller\Base;
 use thans\jwt\facade\JWTAuth;
 class Auth extends Base
 {
