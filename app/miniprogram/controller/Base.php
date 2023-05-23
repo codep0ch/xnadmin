@@ -3,6 +3,7 @@ namespace app\wechat\controller;
 use app\common\model\WechatSetting as WechatSettingModel;
 use EasyWeChat\Factory;
 use think\App;
+use thans\jwt\facade\JWTAuth;
 
 class Base extends \app\common\controller\Base
 {
