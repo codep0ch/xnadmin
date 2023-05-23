@@ -1,6 +1,5 @@
 <?php
-namespace app\wechat\controller;
-use app\common\model\WechatSetting as WechatSettingModel;
+namespace app\miniprogram\controller;
 use EasyWeChat\Factory;
 use think\App;
 use thans\jwt\facade\JWTAuth;
@@ -9,7 +8,6 @@ class Base extends \app\common\controller\Base
 {
     public $instance = null;
     public function __construct(App $app){
-        $wechat_setting_data = WechatSettingModel::find(1);
         $config = [
             'app_id' => 'wxa4c7b2c91daafc5f',
             'secret' => '65de6e5f23d9f86155d9dfe84e10b969',
