@@ -12,7 +12,7 @@ class Auth extends Base
         return commonApiReturn(200, [
             'token' => $token,
             'expire' => 7200,
-            'expire_time' => date("Y-m-d H:i:s", time())
+            'expire_time' => time()
         ], 'Success');
     }
 }
