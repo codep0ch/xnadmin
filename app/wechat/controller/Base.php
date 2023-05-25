@@ -22,6 +22,7 @@ class Base extends \app\common\controller\Base
      * @throws AuthorizeFailedException
      */
     public function __construct(App $app){
+        var_dump( $_SESSION['wechat_user']);die;
         $wechat_setting_data = WechatSettingModel::find(1);
         $this->wechatSetting = [
             'app_id' => $wechat_setting_data['wechatAppId'],
@@ -29,7 +30,6 @@ class Base extends \app\common\controller\Base
             'merchantId' => $wechat_setting_data['merchantId'],
             // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
             'response_type' => 'array',
-
             //...
         ];
 
