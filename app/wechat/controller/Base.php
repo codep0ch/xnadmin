@@ -43,8 +43,7 @@ class Base extends \app\common\controller\Base
                 $this->redirect($redirectUrl);
             }else{
                 $user = $this->wechatApp->oauth->userFromCode(app()->request->get('code'));
-                $_SESSION['wechat_user'] = $user;
-               var_dump($user->toArray()); die;
+                $_SESSION['wechat_user'] = $user->toArray();
             }
         }
     }
