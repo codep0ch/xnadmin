@@ -19,7 +19,6 @@ class Auth extends Base
         $params['sign'] = strtoupper($sign);
         //RL6VHZ1DG78N5Y4X1S9FP6QK0U345790
         $url = 'https://action.weixin.qq.com/busifavor/getcouponinfo?'.http_build_query($params).'#wechat_redirect';
-        echo $url;die;
-        $this->redirect($url);
+        $this->redirect(urlencode($url));
     }
 }
