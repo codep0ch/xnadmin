@@ -23,7 +23,7 @@ class Base extends \app\common\controller\Base
         if (empty($_SESSION['wechat_user'])) {
             // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
             $redirectUrl = $app->oauth->scopes(['snsapi_userinfo'])
-                ->redirect('http://106.75.226.215/wechat/auth');
+                ->redirect('https://test.codepoch.com/wechat/auth');
             $this->redirect($redirectUrl);
         }else{
             // 已经登录过
