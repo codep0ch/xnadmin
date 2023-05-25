@@ -21,15 +21,20 @@ class Base extends \app\common\controller\Base
         $app = Factory::officialAccount($config);
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
-            // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
-            $redirectUrl = $app->oauth->scopes(['snsapi_userinfo'])
-                ->redirect('https://test.codepoch.com/wechat/auth');
-            $this->redirect($redirectUrl);
+            if(empty($this->request->get('code'))){
+                // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
+                $redirectUrl = $app->oauth->scopes(['snsapi_userinfo'])
+                    ->redirect('https://test.codepoch.com/wechat/auth');
+                $this->redirect($redirectUrl);
+            }else{
+                $user = $app->oauth->userFromCode($this->request->get('code'));
+                $_SESSION['wechat_user'] = $user;
+            }
         }else{
             // 已经登录过
             $user = $_SESSION['wechat_user'];
-            var_dump($user);
         }
+        var_dump($user);
         parent::__construct($app);
     }
 }
