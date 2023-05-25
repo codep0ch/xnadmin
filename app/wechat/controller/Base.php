@@ -46,4 +46,80 @@ class Base extends \app\common\controller\Base
             }
         }
     }
+
+    /**
+     * 微信 API V2 签名
+     * @param $params
+     * @param $privateKey
+     * @param string $type sha256:HMAC-SHA256签名方式 me5:MD5签名方式
+     * @return string
+     */
+    function getSignV2($params, $privateKey, $type = "sha256")
+    {
+        #参数名ASCII码从小到大排序（字典序）
+        ksort($params);
+        #初始化数据
+        $stringToBeSigned = "";
+        $i = 0;
+        #循环拼接请求参数
+        foreach ($params as $k => $v) {
+            if (false === $this->checkWxEmpty($v) && "@" != substr($v, 0, 1)) {
+                // 转换成目标字符集
+                $v = $this->wxCharaCet($v, "UTF-8");
+                if ($i == 0) {
+                    $stringToBeSigned .= "$k" . "=" . urlencode($v);
+                } else {
+                    $stringToBeSigned .= "&" . "$k" . "=" . urlencode($v);
+                }
+                $i++;
+            }
+        }
+        #清除缓存
+        unset ($k, $v);
+        #拼接密钥
+        $stringSignTemp = $stringToBeSigned . "&key=" . $privateKey;
+        #签名方式 sha256、md5
+        if ($type == "sha256") {
+            $sign = strtoupper(hash_hmac("sha256", $stringSignTemp, $privateKey));
+        } else {
+            $sign = strtoupper(md5($stringSignTemp));
+        }
+        #返回
+        return $sign;
+    }
+
+    /**
+     * 转换成目标字符集
+     * @param $data
+     * @param $targetCharset
+     * @return string
+     */
+    function wxCharaCet($data, $targetCharset): string
+    {
+        if (!empty($data)) {
+            $fileType = "UTF-8";
+            if (strcasecmp($fileType, $targetCharset) != 0) {
+                $data = mb_convert_encoding($data, $targetCharset, $fileType);
+            }
+        }
+        return $data;
+    }
+
+
+    /**
+     * 判断参数值是否为空
+     * @param $value
+     * @return bool
+     */
+    function checkWxEmpty($value): bool
+    {
+        if (!isset($value))
+            return true;
+        if ($value === null)
+            return true;
+        if (trim($value) === "")
+            return true;
+
+        return false;
+    }
 }
