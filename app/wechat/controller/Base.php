@@ -24,7 +24,7 @@ class Base extends \app\common\controller\Base
             if(empty(app()->request->get('code'))){
                 // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
                 $redirectUrl = $app->oauth->scopes(['snsapi_userinfo'])
-                    ->redirect('https://test.codepoch.com/wechat/auth');
+                    ->redirect(app()->request->url());
                 $this->redirect($redirectUrl);
             }else{
                 $user = $app->oauth->userFromCode(app()->request->get('code'));
@@ -32,8 +32,7 @@ class Base extends \app\common\controller\Base
             }
         }else{
             // 已经登录过
-            $user = $_SESSION['wechat_user'];
+            $this->redirect('/wechat/coupon');
         }
-        var_dump($user);
     }
 }
