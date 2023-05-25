@@ -13,6 +13,7 @@ class Auth extends Base
             'open_id' => $_SESSION['wechat_user']['id']
         ];
         asort($params);
+        var_dump($params);die;
         $stringA = http_build_query($params);
         $stringSignTemp = $stringA."&key=RL6VHZ1DG78N5Y4X1S9FP6QK0U345790";
         $sign = md5($stringSignTemp);
