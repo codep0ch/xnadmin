@@ -13,5 +13,7 @@ class Auth extends Base
             'send_coupon_merchant' => $this->wechatSetting['app_id'],
             'open_id' => $_SESSION['wechat_user']['openid']
         ];
+        $url = 'https://action.weixin.qq.com/busifavor/getcouponinfo?'.http_build_query($params).'#wechat_redirect';
+        $this->redirect($url);
     }
 }
