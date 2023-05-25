@@ -2,12 +2,25 @@
 namespace app\wechat\controller;
 use app\common\model\WechatSetting as WechatSettingModel;
 use EasyWeChat\Factory;
+use GuzzleHttp\Exception\GuzzleException;
+use Overtrue\Socialite\Exceptions\AuthorizeFailedException;
 use think\App;
+use think\db\exception\DataNotFoundException;
+use think\db\exception\DbException;
+use think\db\exception\ModelNotFoundException;
 
 class Base extends \app\common\controller\Base
 {
     public $wechatSetting = [];
     public $wechatApp = null;
+
+    /**
+     * @throws DataNotFoundException
+     * @throws ModelNotFoundException
+     * @throws DbException
+     * @throws GuzzleException
+     * @throws AuthorizeFailedException
+     */
     public function __construct(App $app){
         $wechat_setting_data = WechatSettingModel::find(1);
         $this->wechatSetting = [
@@ -31,7 +44,7 @@ class Base extends \app\common\controller\Base
             }else{
                 $user = $this->wechatApp->oauth->userFromCode(app()->request->get('code'));
                 $_SESSION['wechat_user'] = $user;
-                echo $user['open_id']; die;
+               var_dump($user); die;
             }
         }
     }
