@@ -27,7 +27,7 @@ class Base extends \app\common\controller\Base
                     ->redirect('https://test.codepoch.com/wechat/auth');
                 $this->redirect($redirectUrl);
             }else{
-                $user = $app->oauth->userFromCode($this->request->get('code'));
+                $user = $app->oauth->userFromCode(app()->request->get('code'));
                 $_SESSION['wechat_user'] = $user;
             }
         }else{
