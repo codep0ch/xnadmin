@@ -35,6 +35,5 @@ class Base extends \app\common\controller\Base
             $user = $_SESSION['wechat_user'];
         }
         var_dump($user);
-        parent::__construct($app);
     }
 }
