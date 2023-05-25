@@ -7,6 +7,7 @@ use think\App;
 class Base extends \app\common\controller\Base
 {
     public $wechatSetting = [];
+    public $wechatApp = null;
     public function __construct(App $app){
         $wechat_setting_data = WechatSettingModel::find(1);
         $this->wechatSetting = [
@@ -19,16 +20,16 @@ class Base extends \app\common\controller\Base
             //...
         ];
 
-        $app = Factory::officialAccount($this->wechatSetting);
+        $this->wechatApp = Factory::officialAccount($this->wechatSetting);
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
             if(empty(app()->request->get('code'))){
                 // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
-                $redirectUrl = $app->oauth->scopes(['snsapi_userinfo'])
+                $redirectUrl = $this->wechatApp->oauth->scopes(['snsapi_userinfo'])
                     ->redirect('https://test.codepoch.com/'.app()->request->url());
                 $this->redirect($redirectUrl);
             }else{
-                $user = $app->oauth->userFromCode(app()->request->get('code'));
+                $user = $this->wechatApp->oauth->userFromCode(app()->request->get('code'));
                 $_SESSION['wechat_user'] = $user;
             }
         }
