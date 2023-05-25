@@ -12,10 +12,9 @@ class Auth extends Base
             'send_coupon_merchant' => $this->wechatSetting['merchantId'],
             'open_id' => $_SESSION['wechat_user']['id']
         ];
-        asort($params);
+        sort($params);
         $stringA = http_build_query($params);
         $stringSignTemp = $stringA."&key=RL6VHZ1DG78N5Y4X1S9FP6QK0U345790";
-        var_dump($stringSignTemp);die;
         $sign = md5($stringSignTemp);
         $params['sign'] = strtoupper($sign);
         //RL6VHZ1DG78N5Y4X1S9FP6QK0U345790
