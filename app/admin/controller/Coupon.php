@@ -62,12 +62,6 @@ class Coupon extends AdminBase
                     $param['transaction_minimum'] = $param['d_transaction_minimum'];
                 }
                 unset($param['n_transaction_minimum'], $param['d_transaction_minimum']);
-                $insert_id = CouponModel::insertGetId($param);
-                if($insert_id) {
-                    xn_add_admin_log('添加优惠券');
-                } else {
-                    throw new Exception('添加失败,数据无法写入');
-                }
                 $postData = [
                     'stock_name' => $param['stock_name'],
                     'belong_merchant' => $wechat_setting_data['merchantId'],
@@ -112,6 +106,13 @@ class Coupon extends AdminBase
                 $stock_id = $respBody['stock_id'];
                 if(empty($stock_id)){
                     throw new Exception('微信返回创建失败');
+                }
+                $param['stock_id'] = $stock_id;
+                $insert_id = CouponModel::insertGetId($param);
+                if($insert_id) {
+                    xn_add_admin_log('添加优惠券');
+                } else {
+                    throw new Exception('添加失败,数据无法写入');
                 }
                 // 提交事务
                 Db::commit();

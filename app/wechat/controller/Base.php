@@ -6,9 +6,10 @@ use think\App;
 
 class Base extends \app\common\controller\Base
 {
+    public $wechatSetting = [];
     public function __construct(App $app){
         $wechat_setting_data = WechatSettingModel::find(1);
-        $config = [
+        $this->wechatSetting = [
             'app_id' => $wechat_setting_data['wechatAppId'],
             'secret' => $wechat_setting_data['wechatAppSecret'],
 
@@ -18,7 +19,7 @@ class Base extends \app\common\controller\Base
             //...
         ];
 
-        $app = Factory::officialAccount($config);
+        $app = Factory::officialAccount($this->wechatSetting);
         // 未登录
         if (empty($_SESSION['wechat_user'])) {
             if(empty(app()->request->get('code'))){
@@ -30,9 +31,6 @@ class Base extends \app\common\controller\Base
                 $user = $app->oauth->userFromCode(app()->request->get('code'));
                 $_SESSION['wechat_user'] = $user;
             }
-        }else{
-            // 已经登录过
-            $this->redirect('/wechat/coupon');
         }
     }
 }
