@@ -18,7 +18,7 @@ class Auth extends Base
         $sign = md5($stringSignTemp);
         $params['sign'] = strtoupper($sign);
         //RL6VHZ1DG78N5Y4X1S9FP6QK0U345790
-        $url = 'https://action.weixin.qq.com/busifavor/getcouponinfo?'.http_build_query($params).'#wechat_redirect';
+        $url = 'https://action.weixin.qq.com/busifavor/getcouponinfo?'.http_build_query($params).'#wechat_redirect&12312321321321';
         $this->redirect($url);
     }
 }
