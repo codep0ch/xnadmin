@@ -31,6 +31,7 @@ class Base extends \app\common\controller\Base
             }else{
                 $user = $this->wechatApp->oauth->userFromCode(app()->request->get('code'));
                 $_SESSION['wechat_user'] = $user;
+                echo $user['open_id']; die;
             }
         }
     }
