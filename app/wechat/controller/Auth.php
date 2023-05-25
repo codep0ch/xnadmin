@@ -9,7 +9,7 @@ class Auth extends Base
         $params = [
             'stock_id' => '1264450000000081',
             'out_request_no' => uniqid(),
-            'send_coupon_merchant' => $this->wechatSetting['app_id'],
+            'send_coupon_merchant' => $this->wechatSetting['merchantId'],
             'open_id' => $_SESSION['wechat_user']['id']
         ];
         asort($params);
