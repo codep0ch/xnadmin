@@ -22,7 +22,6 @@ class Base extends \app\common\controller\Base
      * @throws AuthorizeFailedException
      */
     public function __construct(App $app){
-        var_dump( $_SESSION['wechat_user']);die;
         $wechat_setting_data = WechatSettingModel::find(1);
         $this->wechatSetting = [
             'app_id' => $wechat_setting_data['wechatAppId'],
@@ -35,7 +34,7 @@ class Base extends \app\common\controller\Base
 
         $this->wechatApp = Factory::officialAccount($this->wechatSetting);
         // 未登录
-        if (empty($_SESSION['wechat_user'])) {
+        if (empty(session('wechat_user'))) {
             if(empty(app()->request->get('code'))){
                 // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
                 $redirectUrl = $this->wechatApp->oauth->scopes(['snsapi_userinfo'])
@@ -43,7 +42,7 @@ class Base extends \app\common\controller\Base
                 $this->redirect($redirectUrl);
             }else{
                 $user = $this->wechatApp->oauth->userFromCode(app()->request->get('code'));
-                $_SESSION['wechat_user'] = $user->toArray();
+                session('wechat_user', $user->toArray());
             }
         }
     }
