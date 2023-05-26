@@ -167,7 +167,6 @@ class Coupon extends AdminBase
                     ],
                     'out_request_no' => random(32,false)
                 ];
-                echo "v3/marketing/busifavor/stocks/{$param['stock_id']}";
                 $resp = $wechatInstance->chain("v3/marketing/busifavor/stocks/{$param['stock_id']}")->patch([
                     'json' => $postData
                 ]);
