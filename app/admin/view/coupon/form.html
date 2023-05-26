@@ -14,10 +14,10 @@
                 <div class="layui-card-body" pad15="">
                     <div class="layui-form" lay-filter="layuiadmin-app-form-list" id="layuiadmin-app-form-list" style="padding: 20px 30px 0 0;">
                         <form action="{:request()->url()}" method="post" class="xn_ajax">
-                            <div class="layui-form-item" {if condition="$edit eq 1"}disabled{/if}>
+                            <div class="layui-form-item">
                                 <label class="layui-form-label">券类型</label>
                                 <div class="layui-input-block">
-                                    <select name="stock_type" lay-filter="stock-type-filter">
+                                    <select name="stock_type" lay-filter="stock-type-filter" {if condition="$edit eq 1"}disabled{/if}>
                                         <option value="NORMAL" selected>满减券</option>
                                         <option value="DISCOUNT" >折扣券</option>
                                     </select>
