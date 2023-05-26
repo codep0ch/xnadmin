@@ -168,6 +168,7 @@ class Coupon extends AdminBase
                     ],
                     'out_request_no' => random(32,false)
                 ];
+                throw new Exception('微信返回修改失败');
                 $resp = $wechatInstance->chain("v3/marketing/busifavor/stocks/{$param['stock_id']}")->post([
                     'json' => $postData
                 ]);
