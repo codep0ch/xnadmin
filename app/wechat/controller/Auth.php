@@ -7,7 +7,7 @@ class Auth extends Base
 {
     public function init2()
     {
-        $id = $this->request->get('id');
+        $id = app()->request->get('id');
         $couponData = Coupon::find($id);
         $params = [
             'stock_id' => $couponData['stock_id'],
