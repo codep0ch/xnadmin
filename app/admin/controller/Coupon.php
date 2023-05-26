@@ -170,7 +170,7 @@ class Coupon extends AdminBase
         $qrcodeLocalPath = app()->getRootPath()."/public/uploads/qrcode/qr_{$id}.png";
         //生成png图片
         $qrCode = $qrCode->png($url, $qrcodeLocalPath, 'L', 12, 0, false, '0xFFFFFF', '0x000000');
-        return view('qrcode',['qrcode' => $qrCode]);
+        return view('qrcode',['qrcode' => "https://test.codepoch.com/uploads/qrcode/qr_{$id}.png" ]);
     }
 
 }
