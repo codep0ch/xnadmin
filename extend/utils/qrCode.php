@@ -14,7 +14,6 @@ class qrCode
      */
     public function qrcode($frame, $filename = false, $level = 'L', $size = 5, $margin = 2, $saveandprint=false){
         header('Content-Type: image/png');
-        Vendor('phpqrcode.phpqrcode');
         $qrcode = new \QRcode();
         ob_clean();
         $png = $qrcode->png($frame, $filename , $level , $size , $margin , $saveandprint);
@@ -26,7 +25,6 @@ class qrCode
      * 参数同qrcode………………
      */
     public function qrcode64($frame, $level = 'L', $size = 5, $margin = 2){
-        Vendor('phpqrcode.phpqrcode');
         $QRcode = new \QRcode();
         ob_start(); // 在服务器打开一个缓冲区来保存所有的输出
         $QRcode->png($frame,false,$level,$size,$margin);
