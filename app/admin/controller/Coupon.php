@@ -157,11 +157,7 @@ class Coupon extends AdminBase
 
    public function url(){
        $id = $this->request->get('id');
-       $url = "";
-
-
-
-
+       $url = "https://test.codepoch.com/wechat/auth?id=".$id;
        return view('url',['url' => $url]);
    }
 
