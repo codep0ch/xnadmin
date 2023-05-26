@@ -15,7 +15,8 @@ class Base extends \app\common\controller\Base
             'response_type' => 'array'
         ];
         $this->instance = Factory::miniProgram($config);
-        $payload = JWTAuth::auth('sdafsad'); //可验证token, 并获取token中的payload部分
+
+        $payload = JWTAuth::token()->auth(); //可验证token, 并获取token中的payload部分
         var_dump($payload);
         parent::__construct($app);
     }
