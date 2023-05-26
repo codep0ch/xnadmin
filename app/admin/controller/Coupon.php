@@ -174,9 +174,9 @@ class Coupon extends AdminBase
                 if(empty($stock_id)){
                     throw new Exception('微信返回修改失败');
                 }
+                var_dump($respBody);
                 $param['stock_id'] = $stock_id;
-                $insert_id = CouponModel::insertGetId($param);
-                if($insert_id) {
+                if(CouponModel::update($param)) {
                     xn_add_admin_log('修改优惠券');
                 } else {
                     throw new Exception('添加失败,数据无法写入');
