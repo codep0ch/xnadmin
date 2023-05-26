@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4f9107abe53d5eb8c002f6db693c1f8",
+    "content-hash": "c09cc492225de7f80f4e5c781155d688",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -50,6 +50,47 @@
                 "source": "https://github.com/aliyun/aliyun-oss-php-sdk/tree/v2.6.0"
             },
             "time": "2022-08-03T08:06:01+00:00"
+        },
+        {
+            "name": "dh2y/think-qrcode",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cinaofdai/think-qrcode.git",
+                "reference": "977d032afa27b1852f5fc5441fad2497f6db7ff5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cinaofdai/think-qrcode/zipball/977d032afa27b1852f5fc5441fad2497f6db7ff5",
+                "reference": "977d032afa27b1852f5fc5441fad2497f6db7ff5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "dh2y\\qrcode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "dh2y",
+                    "email": "xiaodai54_long@163.com"
+                }
+            ],
+            "description": "qrcode for thinkphp5",
+            "homepage": "https://github.com/cinaofdai/think-qrcode",
+            "support": {
+                "issues": "https://github.com/cinaofdai/think-qrcode/issues",
+                "source": "https://github.com/cinaofdai/think-qrcode/tree/2.0"
+            },
+            "time": "2019-07-10T02:57:29+00:00"
         },
         {
             "name": "easywechat-composer/easywechat-composer",
