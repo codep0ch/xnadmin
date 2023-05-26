@@ -7,6 +7,7 @@ use app\common\model\WechatSetting as WechatSettingModel;
 use GuzzleHttp\Exception\ClientException;
 use think\Exception;
 use think\facade\Db;
+use utils\qrCode;
 use utils\Wechat;
 
 class Coupon extends AdminBase
@@ -162,15 +163,11 @@ class Coupon extends AdminBase
    }
 
     public function qrCode(){
-        require_once \think\facade\App::getRootPath().'extend/phpqrcode/phpqrcode.php';
-        header('Content-Type: image/png');
         $id = $this->request->get('id');
         $url = "https://test.codepoch.com/wechat/auth?id=".$id;
-        $qrcodeLocalPath = app()->getRootPath()."/public/uploads/qrcode/qr_{$id}.png";
-        //生成png图片
-        ob_clean();
-        \QRcode::png($url, $qrcodeLocalPath, 'L', 6, 2,false,'0xFFFFFF','0xFFFFFF');
-        return view('qrcode',['qrcode' => "https://test.codepoch.com/uploads/qrcode/qr_{$id}.png" ]);
+        $qrCode = new qrCode();
+        $resp = $qrCode->qrcode64($url);
+        return view('qrcode',['qrcode' => $resp]);
     }
 
 }
