@@ -1,0 +1,16 @@
+{extend name="main" /}
+
+{block name="body"}
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">卡券领取二维码</div>
+                <div class="layui-card-body" pad15="">
+                   {$qrcode}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
