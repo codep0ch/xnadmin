@@ -182,6 +182,7 @@ class Coupon extends AdminBase
                 Db::commit();
             } catch (\Exception $e){
                 // 回滚事务
+                var_dump($e->getResponse()->getBody());
                 Db::rollback();
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
                     $this->error('修改失败:'.$e->getResponse()->getBody());
