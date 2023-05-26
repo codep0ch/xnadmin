@@ -167,7 +167,7 @@ class Coupon extends AdminBase
         $id = $this->request->get('id');
         $url = "https://test.codepoch.com/wechat/auth?id=".$id;
         $qrCode = new \QRcode();
-        $qrcodeLocalPath = app()->getRuntimePath()."/qrcode/qr_{$id}.png";
+        $qrcodeLocalPath = app()->getRootPath()."/public/uploads/qrcode/qr_{$id}.png";
         //生成png图片
         $qrCode = $qrCode->png($url, $qrcodeLocalPath, 'L', 12, 0, false, '0xFFFFFF', '0x000000');
         return view('qrcode',['qrcode' => $qrCode]);
