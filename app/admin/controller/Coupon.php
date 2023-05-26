@@ -168,8 +168,7 @@ class Coupon extends AdminBase
                     'out_request_no' => random(32,false)
                 ];
                 $resp = $wechatInstance->chain("v3/marketing/busifavor/stocks/{$param['stock_id']}")->patch([
-                    'json' => $postData,
-                    'headers' => [ 'Accept' => 'application/json' ]
+                    'json' => $postData
                 ]);
                 $statusCode = $resp->getStatusCode();
                 if($statusCode == 200){
@@ -186,9 +185,6 @@ class Coupon extends AdminBase
                 // 回滚事务
                 Db::rollback();
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
-                    $r = $e->getResponse();
-                    echo $r->getStatusCode() . ' ' . $r->getReasonPhrase(), PHP_EOL;
-                    echo $r->getBody(), PHP_EOL, PHP_EOL, PHP_EOL;
                     $this->error('修改失败:'.$e->getResponse()->getBody());
                 }else{
                     $this->error('修改失败:'.$e->getMessage());
