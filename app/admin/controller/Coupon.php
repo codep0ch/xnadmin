@@ -162,12 +162,15 @@ class Coupon extends AdminBase
    }
 
     public function qrCode(){
+        require_once \think\facade\App::getRootPath().'extend/phpqrcode/phpqrcode.php';
+
         $id = $this->request->get('id');
         $url = "https://test.codepoch.com/wechat/auth?id=".$id;
-        $qrcode = new \dh2y\qrcode\QRcode();
+        $qrCode = new \QRcode();
         $qrcodeLocalPath = app()->getRuntimePath()."/qrcode/qr_{$id}.png";
-        $qrcode->png($url,$qrcodeLocalPath,12,' L');
-        return view('qrcode',['qrcode' => $qrcodeLocalPath]);
+        //生成png图片
+        $qrCode = $qrCode->png($url, $qrcodeLocalPath, 'L', 12, 0, false, '0xFFFFFF', '0x000000');
+        return view('qrcode',['qrcode' => $qrCode]);
     }
 
 }
