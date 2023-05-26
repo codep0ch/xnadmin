@@ -38,7 +38,7 @@ class Base extends \app\common\controller\Base
             if(empty(app()->request->get('code'))){
                 // $redirectUrl 为跳转目标，请自行 302 跳转到目标地址
                 $redirectUrl = $this->wechatApp->oauth->scopes(['snsapi_userinfo'])
-                    ->redirect('https://test.codepoch.com/'.app()->request->url());
+                    ->redirect(app()->request->url(true).app()->request->param());
                 $this->redirect($redirectUrl);
             }else{
                 $user = $this->wechatApp->oauth->userFromCode(app()->request->get('code'));
