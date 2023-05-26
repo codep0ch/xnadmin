@@ -158,13 +158,15 @@ class Coupon extends AdminBase
             try {
                 unset($param['n_transaction_minimum'], $param['d_transaction_minimum']);
                 $postData = [
+                    'stock_id' => $param['stock_id'],
                     'goods_name' => $param['goods_name'],
                     'stock_send_rule' => [
                         'prevent_api_abuse' => (bool)$param['prevent_api_abuse']
                     ],
                     'display_pattern_info' => [
                         'description' => $param['description']
-                    ]
+                    ],
+                    'out_request_no' => random(32,false)
                 ];
                 $resp = $wechatInstance->chain("v3/marketing/busifavor/stocks/{$param['stock_id']}")->post([
                     'json' => $postData
@@ -182,7 +184,6 @@ class Coupon extends AdminBase
                 Db::commit();
             } catch (\Exception $e){
                 // 回滚事务
-                var_dump($e->getResponse()->getBody());
                 Db::rollback();
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
                     $this->error('修改失败:'.$e->getResponse()->getBody());
