@@ -143,17 +143,60 @@ class Coupon extends AdminBase
         if( $this->request->isPost() ) {
             $param = $this->request->param();
 
-            $result = CouponModel::update($param);
-            if( $result ) {
-                xn_add_admin_log('修改卡券信息');
-                $this->success('操作成功');
-            } else {
-                $this->error('操作失败');
+            //创建微信实例
+            $wechat_setting_data = WechatSettingModel::find(1);
+            $wechatInstance = (new \utils\Wechat())->createWechatPay(
+                $wechat_setting_data['merchantId'],
+                $wechat_setting_data['merchantPrivateKeyFile'],
+                $wechat_setting_data['merchantCertificateSerial'],
+                $wechat_setting_data['platformCertificateFilePath']
+            )->getInstance();
+
+
+            // 启动事务
+            Db::startTrans();
+            try {
+                unset($param['n_transaction_minimum'], $param['d_transaction_minimum']);
+                $postData = [
+                    'goods_name' => $param['goods_name'],
+                    'stock_send_rule' => [
+                        'prevent_api_abuse' => (bool)$param['prevent_api_abuse']
+                    ],
+                    'display_pattern_info' => [
+                        'description' => $param['description']
+                    ]
+                ];
+                $resp = $wechatInstance->chain("v3/marketing/busifavor/stocks/{$param['stock_id']}")->post([
+                    'json' => $postData
+                ]);
+                $respBody = json_decode($resp->getBody(), true);
+                $stock_id = $respBody['stock_id'];
+                if(empty($stock_id)){
+                    throw new Exception('微信返回修改失败');
+                }
+                $param['stock_id'] = $stock_id;
+                $insert_id = CouponModel::insertGetId($param);
+                if($insert_id) {
+                    xn_add_admin_log('修改优惠券');
+                } else {
+                    throw new Exception('添加失败,数据无法写入');
+                }
+                // 提交事务
+                Db::commit();
+            } catch (\Exception $e){
+                // 回滚事务
+                Db::rollback();
+                if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
+                    $this->error('修改失败:'.$e->getResponse()->getBody());
+                }else{
+                    $this->error('修改失败:'.$e->getMessage());
+                }
             }
+            $this->success('修改成功');
         }
         $id = $this->request->get('id');
         $coupon_data = CouponModel::find(['id' => $id]);
-        return view('form',['coupon_data' => $coupon_data]);
+        return view('form',['coupon_data' => $coupon_data, 'edit' => 1]);
     }
 
    public function url(){
