@@ -168,10 +168,11 @@ class Coupon extends AdminBase
                     'out_request_no' => random(32,false)
                 ];
                 $resp = $wechatInstance->chain("v3/marketing/busifavor/stocks/{$param['stock_id']}")->patch([
-                    'body' => $postData
+                    'json' => $postData,
+                    'headers' => [ 'Accept' => 'application/json' ]
                 ]);
-                $respBody = json_decode($resp->getBody(), true);
-                if(empty($respBody)){
+                $statusCode = $resp->getStatusCode();
+                if($statusCode == 200){
                     throw new Exception('微信返回修改失败');
                 }
                 if(CouponModel::update($param)) {
