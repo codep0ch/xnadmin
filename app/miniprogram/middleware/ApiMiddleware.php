@@ -22,7 +22,7 @@ class ApiMiddleware
         $strToken = Request::header('token');
         if ($strToken) {
             if (count(explode('.', $strToken)) <> 3) {
-                throw new \Exception('非法身份信息,请重新登录', 401);
+                return commonApiReturn(401, [], '非法身份信息,请重新登录');
             }
             //获取JwtAuth的句柄
             $objJwtAuth = JwtBaseService::getInstance();
@@ -30,7 +30,7 @@ class ApiMiddleware
             $request->claims = $claims;
             return $next($request);
         } else {
-            throw new \Exception('请先登录', 401);
+            return commonApiReturn(401, [], '请先登录');
         }
     }
 }
