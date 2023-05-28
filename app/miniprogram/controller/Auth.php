@@ -1,14 +1,20 @@
 <?php
 namespace app\miniprogram\controller;
 use app\miniprogram\controller\Base;
-use thans\jwt\facade\JWTAuth;
+use app\miniprogram\middleware\JwtBaseService;
+use EasyWeChat\Kernel\Exceptions\InvalidConfigException;
+
 class Auth extends Base
 {
-    public function init()
+    /**
+     * @throws InvalidConfigException
+     */
+    public function init(): \think\response\Json
     {
         $code = $this->request->get('code');
         $resp = $this->instance->auth->session($code);
-        $token = JWTAuth::builder($resp);
+        $token = JwtBaseService::getInstance()->createToken($resp);
+
         return commonApiReturn(200, [
             'token' => $token,
             'expire' => 7200,

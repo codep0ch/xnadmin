@@ -2,7 +2,7 @@
 namespace app\miniprogram\controller;
 use EasyWeChat\Factory;
 use think\App;
-use thans\jwt\facade\JWTAuth;
+
 
 class Base extends \app\common\controller\Base
 {
@@ -16,8 +16,7 @@ class Base extends \app\common\controller\Base
         ];
         $this->instance = Factory::miniProgram($config);
 
-        $tokenStr = JWTAuth::token()->get(); //可以获取请求中的完整token字符串
-        $payload = JWTAuth::auth(); //可验证token, 并获取token中的payload部分
+
         parent::__construct($app);
     }
 }
