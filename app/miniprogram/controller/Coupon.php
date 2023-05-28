@@ -6,8 +6,6 @@ class Coupon extends Base
 {
     public function init()
     {
-        return json([
-            'hi' => 'hi',
-        ]);
+        return commonApiReturn(200,[],'success');
     }
 }
