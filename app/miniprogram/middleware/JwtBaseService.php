@@ -67,9 +67,6 @@ class JwtBaseService
     {
         $config = $this->config;
         assert($config instanceof Configuration);
-        if (count($arrClaim) == count($arrClaim, 1)) {
-            throw new Exception("claim参数必须为二维数组");
-        }
         $now = new \DateTimeImmutable();
 
         $token = $config->builder()

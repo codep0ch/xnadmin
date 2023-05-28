@@ -13,7 +13,6 @@ class Auth extends Base
     {
         $code = $this->request->get('code');
         $resp = $this->instance->auth->session($code);
-        var_dump($resp);
         $token = JwtBaseService::getInstance()->createToken($resp);
 
         return commonApiReturn(200, [
