@@ -7,4 +7,5 @@ Route::get('auth', '/wechat/Auth/init');
 //group （第一个参数路由组名称 ，）
 Route::group('', function(){
     Route::get('info', '/wechat/Coupon/init');
+    Route::get('doConsume', '/wechat/Coupon/doConsume');
 })->middleware(\app\miniprogram\middleware\ApiMiddleware::class);
