@@ -12,7 +12,7 @@ class Coupon extends Base
 
     public function doConsume()
     {
-        $coupon_code = $this->request->post('code');
+        $coupon_code = $this->request->param('code');
         //创建微信实例
         $wechat_setting_data = WechatSettingModel::find(1);
         $wechatInstance = (new \utils\Wechat())->createWechatPay(
