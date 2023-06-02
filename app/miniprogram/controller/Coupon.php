@@ -13,12 +13,6 @@ class Coupon extends Base
     public function doConsume()
     {
         $coupon_code = $this->request->post('code');
-        var_dump([
-            $this->request->param('code'),
-            $this->request->post('code'),
-            app()->request->param('code'),
-            app()->request->post('code'),
-        ]);
         //创建微信实例
         $wechat_setting_data = WechatSettingModel::find(1);
         $wechatInstance = (new \utils\Wechat())->createWechatPay(
@@ -28,6 +22,12 @@ class Coupon extends Base
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
         $resp = $wechatInstance->chain("v3/marketing/busifavor/coupons/use")->post([
+            'coupon_code' => $coupon_code,
+            'appid' => $wechat_setting_data['wechatAppId'],
+            'use_time' => date('c',time()),
+            'use_request_no' => random(32,false)
+        ]);
+        var_dump([
             'coupon_code' => $coupon_code,
             'appid' => $wechat_setting_data['wechatAppId'],
             'use_time' => date('c',time()),
