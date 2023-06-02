@@ -22,16 +22,12 @@ class Coupon extends Base
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
         $resp = $wechatInstance->chain("v3/marketing/busifavor/coupons/use")->post([
-            'coupon_code' => $coupon_code,
-            'appid' => $wechat_setting_data['wechatAppId'],
-            'use_time' => date('c',time()),
-            'use_request_no' => random(32,false)
-        ]);
-        var_dump([
-            'coupon_code' => $coupon_code,
-            'appid' => $wechat_setting_data['wechatAppId'],
-            'use_time' => date('c',time()),
-            'use_request_no' => random(32,false)
+            'json' => [
+                'coupon_code' => $coupon_code,
+                'appid' => $wechat_setting_data['wechatAppId'],
+                'use_time' => date('c',time()),
+                'use_request_no' => random(32,false)
+            ]
         ]);
         $statusCode = $resp->getStatusCode();
         if($statusCode == 200){
