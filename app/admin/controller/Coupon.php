@@ -171,7 +171,7 @@ class Coupon extends AdminBase
                     'json' => $postData
                 ]);
                 $statusCode = $resp->getStatusCode();
-                if($statusCode == 200){
+                if($statusCode != 200){
                     throw new Exception('微信返回修改失败');
                 }
                 if(CouponModel::update($param)) {

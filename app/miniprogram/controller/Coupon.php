@@ -30,7 +30,7 @@ class Coupon extends Base
             ]
         ]);
         $statusCode = $resp->getStatusCode();
-        if($statusCode == 200){
+        if($statusCode != 200){
             return commonApiReturn(400,[],'微信返回核销失败');
         }else{
             return commonApiReturn(200,[],'核销成功');
