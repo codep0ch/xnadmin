@@ -21,15 +21,9 @@ class Coupon extends Base
             $wechat_setting_data['merchantCertificateSerial'],
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
-        var_dump([
-            'coupon_code' => $coupon_code,
-            'appid' => $wechat_setting_data['appId'],
-            'use_time' => date('c',time()),
-            'use_request_no' => random(32,false)
-        ]);
         $resp = $wechatInstance->chain("v3/marketing/busifavor/coupons/use")->post([
             'coupon_code' => $coupon_code,
-            'appid' => $wechat_setting_data['appId'],
+            'appid' => $wechat_setting_data['wechatAppId'],
             'use_time' => date('c',time()),
             'use_request_no' => random(32,false)
         ]);
