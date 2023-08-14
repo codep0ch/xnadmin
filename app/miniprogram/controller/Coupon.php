@@ -1,7 +1,7 @@
 <?php
 namespace app\miniprogram\controller;
 use app\common\model\CouponSendLog;
-use app\common\model\CouponModel;
+use app\common\model\Coupon as CouponModel;
 use app\common\model\WechatSetting as WechatSettingModel;
 use app\miniprogram\controller\Base;
 use thans\jwt\facade\JWTAuth;
