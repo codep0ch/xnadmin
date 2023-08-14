@@ -24,7 +24,18 @@ class Coupon extends Base
             $couponInfo['stock_type'] = '折扣券';
         }
 
-        return commonApiReturn(200,$couponInfo,'查询成功');
+
+        //创建微信实例
+        $wechat_setting_data = WechatSettingModel::find(1);
+        $wechatInstance = (new \utils\Wechat())->createWechatPay(
+            $wechat_setting_data['merchantId'],
+            $wechat_setting_data['merchantPrivateKeyFile'],
+            $wechat_setting_data['merchantCertificateSerial'],
+            $wechat_setting_data['platformCertificateFilePath']
+        )->getInstance();
+        $resp = $wechatInstance->chain("v3/marketing/busifavor/users/{$couponLog['openid']}/coupons/{$coupon_code}}/appids/{$couponLog['openid']}")->get();
+
+        return commonApiReturn(200,$resp->getBody(),'查询成功');
     }
 
     public function doConsume()
