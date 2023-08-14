@@ -34,22 +34,15 @@ class Coupon extends Base
                 $wechat_setting_data['platformCertificateFilePath']
             )->getInstance();
 
-            $resp = $wechatInstance->v3->marketing->busifavor->users->_openid_->coupons->_coupon_code_->appids->_appid_->get([
-                // 变量名 => 变量值
-                'openid' => $couponLog['open_id'],
-                'coupon_code' => $coupon_code,
-                'appid' => $wechat_setting_data['wechatAppId']
-            ]);
-        //$resp = $wechatInstance->chain("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}/appids/{$wechat_setting_data['wechatAppId']}")->get();
+//            $resp = $wechatInstance->v3->marketing->busifavor->users->_openid_->coupons->_coupon_code_->appids->_appid_->get([
+//                // 变量名 => 变量值
+//                'openid' => $couponLog['open_id'],
+//                'coupon_code' => $coupon_code,
+//                'appid' => $wechat_setting_data['wechatAppId']
+//            ]);
+        $resp = $wechatInstance->chain("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}/appids/{$wechat_setting_data['wechatAppId']}")->get();
         } catch (\Exception $e) {
-                // 进行错误处理
-            echo $e->getMessage(), PHP_EOL;
-            if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
-            $r = $e->getResponse();
-            echo $r->getStatusCode() . ' ' . $r->getReasonPhrase(), PHP_EOL;
-            }
-            echo $e->getTraceAsString(), PHP_EOL;
-            return commonApiReturn(200,$e,'查询失败');
+            return commonApiReturn(200,$e->getMessage(),'查询失败');
         }
         return commonApiReturn(200,$resp->getBody(),'查询成功');
     }
