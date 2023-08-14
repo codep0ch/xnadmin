@@ -70,34 +70,6 @@
             </div>
         </div>
     </div>
-
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md9">
-            <div class="layui-card">
-                <div class="layui-card-header">数据概览</div>
-                <div class="layui-card-body layui-text">
-                    <div id="my_chart" style="width: 100%;height: 400px;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md3">
-            <div class="layui-card">
-                <div class="layui-card-header">服务器信息</div>
-                <div class="layui-card-body layui-text">
-                    <table class="layui-table">
-                        {foreach name="server_info" item="vo"}
-                        {if condition="$k%2==1"}<tr>{/if}
-                        <td width="100">{$key}：</td>
-                        <td>{$vo}</td>
-                        {if condition="$k%2==0"}</tr>{/if}
-                        {/foreach}
-                        {if condition="count($caches)%2==1"}<td>&nbsp;</td><td>&nbsp;</td></tr>{/if}
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="layui-row ">
         <div class="layui-col-md9">
 
