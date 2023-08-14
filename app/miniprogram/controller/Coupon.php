@@ -67,6 +67,7 @@ class Coupon extends Base
             })
             ->otherwise(static function($e) {
                 // 异常错误处理
+                return commonApiReturn(200,$e->getMessage(),'查询失败1');
                 echo $e->getMessage(), PHP_EOL;
                 if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
                     $r = $e->getResponse();
