@@ -26,7 +26,7 @@ class Coupon extends Base
         $couponLog = CouponSendLog::where('coupon_code', $coupon_code)->find();
         $couponInfo = CouponModel::find($couponLog['couponid']);
         if($couponInfo['status'] != 1){
-            return commonApiReturn(400,[],'券禁止核销');
+            return commonApiReturn(401,[],'券禁止核销');
         }
         try {
             $resp = $wechatInstance->chain("v3/marketing/busifavor/coupons/use")->post([
