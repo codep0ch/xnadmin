@@ -55,7 +55,7 @@ class Coupon extends Base
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
 
-        $promise = $wechatInstance->v3->marketing->busifavor->users->_openid_->coupons->_coupon_code_->appids->_appid_->get([
+        $promise = $wechatInstance->v3->marketing->busifavor->users->_openid_->coupons->_coupon_code_->appids->_appid_->getAsync([
                 // 变量名 => 变量值
                 'openid' => $couponLog['open_id'],
                 'coupon_code' => $coupon_code,
