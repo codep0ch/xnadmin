@@ -33,7 +33,7 @@ class Coupon extends Base
             $wechat_setting_data['merchantCertificateSerial'],
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
-        $resp = $wechatInstance->chain("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}}/appids/{$wechat_setting_data['wechatAppId']}")->get();
+        $resp = $wechatInstance->chain("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}/appids/{$wechat_setting_data['wechatAppId']}")->get();
         } catch (\Exception $e) {
                 // 进行错误处理
             echo $e->getMessage(), PHP_EOL;
