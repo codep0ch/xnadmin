@@ -42,7 +42,8 @@ class Coupon extends Base
             if($statusCode != 200){
                 return commonApiReturn(400,[],'微信返回核销失败');
             }else{
-                $couponLog->update(['is_consume' => 1]);
+                $couponLog->is_consume = 1;
+                $couponLog->save();
                 return commonApiReturn(200,[],'核销成功');
             }
         }catch (\Exception $e){
