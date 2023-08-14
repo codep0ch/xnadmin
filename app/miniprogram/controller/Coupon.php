@@ -51,7 +51,7 @@ class Coupon extends Base
             echo $e->getTraceAsString(), PHP_EOL;
             return commonApiReturn(200,$e,'查询失败');
         }
-        return commonApiReturn(200,$resp,'查询成功');
+        return commonApiReturn(200,$resp->getBody(),'查询成功');
     }
 
     public function doConsume()
