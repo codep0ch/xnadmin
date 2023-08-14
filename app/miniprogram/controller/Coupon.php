@@ -40,7 +40,7 @@ class Coupon extends Base
 //                'coupon_code' => $coupon_code,
 //                'appid' => $wechat_setting_data['wechatAppId']
 //            ]);
-            $resp = $wechatInstance->chain(urlencode("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}/appids/{$wechat_setting_data['wechatAppId']}"))->get();
+            $resp = $wechatInstance->chain(urldecode("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}/appids/{$wechat_setting_data['wechatAppId']}"))->get();
         } catch (\Exception $e) {
             return commonApiReturn(200,$e->getMessage(),'查询失败');
         }
