@@ -36,7 +36,7 @@ class Coupon extends Base
             }else{
                 return commonApiReturn(200,[],'核销成功');
             }
-        }catch (E $e){
+        }catch (\Exception $e){
             return commonApiReturn(400,$e->getBody(),'未知错误');
         }
 
