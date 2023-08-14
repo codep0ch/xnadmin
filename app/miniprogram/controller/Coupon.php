@@ -11,6 +11,13 @@ class Coupon extends Base
     {
         return commonApiReturn(200,[],'success');
     }
+    public function getCouponInfo()
+    {
+        $coupon_code = $this->request->post('code');
+        $couponLog = CouponSendLog::where('coupon_code', $coupon_code)->find();
+        $couponInfo = CouponModel::find($couponLog['couponid']);
+        return commonApiReturn(200,$couponInfo,'查询成功');
+    }
 
     public function doConsume()
     {
