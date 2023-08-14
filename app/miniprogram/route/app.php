@@ -8,4 +8,5 @@ Route::get('auth', '/wechat/Auth/init');
 Route::group('', function(){
     Route::get('info', '/wechat/Coupon/init');
     Route::post('doConsume', '/wechat/Coupon/doConsume');
+    Route::post('getCouponInfo', '/wechat/Coupon/getCouponInfo');
 })->middleware(\app\miniprogram\middleware\ApiMiddleware::class);
