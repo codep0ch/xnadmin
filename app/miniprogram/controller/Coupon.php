@@ -24,7 +24,7 @@ class Coupon extends Base
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
         $couponLog = CouponSendLog::where('coupon_code', $coupon_code)->find();
-        $couponInfo = CouponModel::where('couponid', $couponLog['couponid'])->find();
+        $couponInfo = CouponModel::find($couponLog['couponid']);
         if($couponInfo['status'] != 1){
             return commonApiReturn(400,[],'券禁止核销');
         }
