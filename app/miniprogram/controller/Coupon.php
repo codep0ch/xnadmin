@@ -49,6 +49,7 @@ class Coupon extends Base
             echo $r->getStatusCode() . ' ' . $r->getReasonPhrase(), PHP_EOL;
             }
             echo $e->getTraceAsString(), PHP_EOL;
+            return commonApiReturn(200,$e,'查询失败');
         }
         return commonApiReturn(200,$resp,'查询成功');
     }
