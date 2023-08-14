@@ -151,46 +151,54 @@ class Coupon extends AdminBase
                 $wechat_setting_data['merchantCertificateSerial'],
                 $wechat_setting_data['platformCertificateFilePath']
             )->getInstance();
-
-
-            // 启动事务
-            Db::startTrans();
-            try {
-                unset($param['n_transaction_minimum'], $param['d_transaction_minimum']);
-                $postData = [
-                    'goods_name' => $param['goods_name'],
-                    'stock_send_rule' => [
-                        'prevent_api_abuse' => (bool)$param['prevent_api_abuse']
-                    ],
-                    'display_pattern_info' => [
-                        'description' => $param['description']
-                    ],
-                    'out_request_no' => random(32,false)
-                ];
-                $resp = $wechatInstance->chain("v3/marketing/busifavor/stocks/{$param['stock_id']}")->patch([
-                    'json' => $postData
-                ]);
-                $statusCode = $resp->getStatusCode();
-                if($statusCode != 200){
-                    throw new Exception('微信返回修改失败');
-                }
+            if(count($param) <= 2){
+                //仅修改状态
                 if(CouponModel::update($param)) {
                     xn_add_admin_log('修改优惠券');
+                    $this->success('修改状态成功');
                 } else {
-                    throw new Exception('添加失败,数据无法写入');
+                    $this->error('修改状态失败');
                 }
-                // 提交事务
-                Db::commit();
-            } catch (\Exception $e){
-                // 回滚事务
-                Db::rollback();
-                if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
-                    $this->error('修改失败:',null,$e->getResponse()->getBody());
-                }else{
-                    $this->error('修改失败:'.$e->getMessage());
+            }else{
+                // 启动事务
+                Db::startTrans();
+                try {
+                    unset($param['n_transaction_minimum'], $param['d_transaction_minimum']);
+                    $postData = [
+                        'goods_name' => $param['goods_name'],
+                        'stock_send_rule' => [
+                            'prevent_api_abuse' => (bool)$param['prevent_api_abuse']
+                        ],
+                        'display_pattern_info' => [
+                            'description' => $param['description']
+                        ],
+                        'out_request_no' => random(32,false)
+                    ];
+                    $resp = $wechatInstance->chain("v3/marketing/busifavor/stocks/{$param['stock_id']}")->patch([
+                        'json' => $postData
+                    ]);
+                    $statusCode = $resp->getStatusCode();
+                    if($statusCode != 200){
+                        throw new Exception('微信返回修改失败');
+                    }
+                    if(CouponModel::update($param)) {
+                        xn_add_admin_log('修改优惠券');
+                    } else {
+                        throw new Exception('添加失败,数据无法写入');
+                    }
+                    // 提交事务
+                    Db::commit();
+                } catch (\Exception $e){
+                    // 回滚事务
+                    Db::rollback();
+                    if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
+                        $this->error('修改失败:',null,$e->getResponse()->getBody());
+                    }else{
+                        $this->error('修改失败:'.$e->getMessage());
+                    }
                 }
+                $this->success('修改成功');
             }
-            $this->success('修改成功');
         }
         $id = $this->request->get('id');
         $coupon_data = CouponModel::find(['id' => $id]);
