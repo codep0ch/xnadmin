@@ -1,6 +1,7 @@
 <?php
 namespace app\miniprogram\controller;
 use app\common\model\CouponSendLog;
+use app\common\model\CouponModel;
 use app\common\model\WechatSetting as WechatSettingModel;
 use app\miniprogram\controller\Base;
 use thans\jwt\facade\JWTAuth;
@@ -22,9 +23,10 @@ class Coupon extends Base
             $wechat_setting_data['merchantCertificateSerial'],
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
-        $couponLog = CouponSendLog::find(['coupon_code' => $coupon_code]);
+        $couponLog = CouponSendLog::where('coupon_code', $coupon_code)->find();
         return commonApiReturn(400,$couponLog,'券禁止核销');
-        if(\app\common\model\Coupon::find($couponLog['couponid'])['status'] != 1){
+        $couponInfo = CouponModel::find($couponLog['couponid']);
+        if($couponInfo['status'] != 1){
             return commonApiReturn(400,[],'券禁止核销');
         }
         try {
