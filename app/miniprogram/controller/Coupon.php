@@ -77,9 +77,7 @@ class Coupon extends Base
             });
         // 同步等待
         $promise->wait();
-
-
-
+        return commonApiReturn(200,[],'查询失败');
     }
 
     public function doConsume()
