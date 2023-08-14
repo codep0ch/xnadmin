@@ -40,6 +40,7 @@ class Coupon extends Base
                 'coupon_code' => $coupon_code,
                 'appid' => $wechat_setting_data['wechatAppId']
             ]);
+            var_dump($resp);
         //$resp = $wechatInstance->chain("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}/appids/{$wechat_setting_data['wechatAppId']}")->get();
         } catch (\Exception $e) {
                 // 进行错误处理
@@ -47,7 +48,6 @@ class Coupon extends Base
             if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
             $r = $e->getResponse();
             echo $r->getStatusCode() . ' ' . $r->getReasonPhrase(), PHP_EOL;
-            echo $r->getBody(), PHP_EOL, PHP_EOL, PHP_EOL;
             }
             echo $e->getTraceAsString(), PHP_EOL;
         }
