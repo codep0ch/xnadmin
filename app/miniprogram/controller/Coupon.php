@@ -37,11 +37,7 @@ class Coupon extends Base
                 return commonApiReturn(200,[],'核销成功');
             }
         }catch (\Exception $e){
-            if ($e instanceof \GuzzleHttp\Exception\RequestException && $e->hasResponse()) {
-                $r = $e->getResponse();
-                return commonApiReturn(400,$r->getReasonPhrase(),'未知错误 -1');
-            }
-            return commonApiReturn(400,$e->getTraceAsString(),'未知错误 -2');
+            return commonApiReturn(400,$e->getMessage(),'未知错误');
         }
 
     }
