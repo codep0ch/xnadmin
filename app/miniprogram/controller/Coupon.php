@@ -44,7 +44,7 @@ class Coupon extends Base
         } catch (\Exception $e) {
             return commonApiReturn(200,$e->getMessage(),'查询失败');
         }
-        return commonApiReturn(200,$resp->getBody(),'查询成功');
+        return commonApiReturn(200,$resp,'查询成功');
     }
 
     public function doConsume()
