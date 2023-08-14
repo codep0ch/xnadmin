@@ -16,8 +16,8 @@ class Coupon extends Base
         $coupon_code = $this->request->post('code');
         $couponLog = CouponSendLog::where('coupon_code', $coupon_code)->find();
         $couponInfo = CouponModel::find($couponLog['couponid']);
-        $couponInfo['discount_amount'] = round($couponInfo['discount_amount']*100, 2);
-        $couponInfo['transaction_minimum'] = round($couponInfo['transaction_minimum']*100, 2);
+        $couponInfo['discount_amount'] = round($couponInfo['discount_amount']/100, 2);
+        $couponInfo['transaction_minimum'] = round($couponInfo['transaction_minimum']/100, 2);
         return commonApiReturn(200,$couponInfo,'查询成功');
     }
 
