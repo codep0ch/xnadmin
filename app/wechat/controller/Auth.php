@@ -14,10 +14,12 @@ class Auth extends Base
             'stock_id' => $couponData['stock_id'],
             'out_request_no' => uniqid(),
             'send_coupon_merchant' => $this->wechatSetting['merchantId'],
-            'open_id' => session('wechat_user')['id']
+            'open_id' => session('wechat_user')['id'],
+            'coupon_code' => time().random(32,true)
         ];
         CouponSendLog::insertGetId([
             'couponid' => $id,
+            'coupon_code' => $params['coupon_code'],
             'out_request_no' => $params['out_request_no'],
             'open_id' => $params['open_id'],
             'create_time' => time()

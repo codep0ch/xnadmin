@@ -93,7 +93,7 @@ class Coupon extends AdminBase
                     'display_pattern_info' => [
                         'description' => $param['description']
                     ],
-                    'coupon_code_mode' => 'WECHATPAY_MODE'
+                    'coupon_code_mode' => 'MERCHANT_API'
                 ];
                 if($param['stock_type'] == 'NORMAL'){
                     unset($postData['coupon_use_rule']['discount_coupon']);

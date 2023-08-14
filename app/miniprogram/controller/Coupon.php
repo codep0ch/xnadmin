@@ -22,6 +22,13 @@ class Coupon extends Base
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
         try {
+            $resp = $wechatInstance->v3->marketing->busifavor->users->_openid_->coupons->_coupon_code_->appids->_appids_getAsync([
+                // 变量名 => 变量值
+                'coupon_code' => $coupon_code,
+                'appid' => $coupon_code,
+                'openid' => $coupon_code
+            ]);
+
             $resp = $wechatInstance->chain("v3/marketing/busifavor/coupons/use")->post([
                 'json' => [
                     'coupon_code' => $coupon_code,
