@@ -23,30 +23,31 @@ class Coupon extends Base
         }else{
             $couponInfo['stock_type'] = '折扣券';
         }
-
-        try {
-            //创建微信实例
-            $wechat_setting_data = WechatSettingModel::find(1);
-            $wechatInstance = (new \utils\Wechat())->createWechatPay(
-                $wechat_setting_data['merchantId'],
-                $wechat_setting_data['merchantPrivateKeyFile'],
-                $wechat_setting_data['merchantCertificateSerial'],
-                $wechat_setting_data['platformCertificateFilePath']
-            )->getInstance();
-
-            $resp = $wechatInstance->v3->marketing->busifavor->users->_openid_->coupons->_coupon_code_->appids->_appid_->get([
-                // 变量名 => 变量值
-                'openid' => $couponLog['open_id'],
-                'coupon_code' => $coupon_code,
-                'appid' => $wechat_setting_data['wechatAppId']
-            ]);
-
-
-            //$resp = $wechatInstance->chain("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}/appids/{$wechat_setting_data['wechatAppId']}")->get();
-            return commonApiReturn(200,json_encode($resp),'查询成功'.$resp->getStatusCode());
-        } catch (\Exception $e) {
-            return commonApiReturn(200,$e->getMessage(),'查询失败');
-        }
+        return commonApiReturn(200,$couponInfo,'查询成功');
+//
+//        try {
+//            //创建微信实例
+//            $wechat_setting_data = WechatSettingModel::find(1);
+//            $wechatInstance = (new \utils\Wechat())->createWechatPay(
+//                $wechat_setting_data['merchantId'],
+//                $wechat_setting_data['merchantPrivateKeyFile'],
+//                $wechat_setting_data['merchantCertificateSerial'],
+//                $wechat_setting_data['platformCertificateFilePath']
+//            )->getInstance();
+//
+//            $resp = $wechatInstance->v3->marketing->busifavor->users->_openid_->coupons->_coupon_code_->appids->_appid_->get([
+//                // 变量名 => 变量值
+//                'openid' => $couponLog['open_id'],
+//                'coupon_code' => $coupon_code,
+//                'appid' => $wechat_setting_data['wechatAppId']
+//            ]);
+//
+//
+//            //$resp = $wechatInstance->chain("v3/marketing/busifavor/users/{$couponLog['open_id']}/coupons/{$coupon_code}/appids/{$wechat_setting_data['wechatAppId']}")->get();
+//            return commonApiReturn(200,json_encode($resp),'查询成功'.$resp->getStatusCode());
+//        } catch (\Exception $e) {
+//            return commonApiReturn(200,$e->getMessage(),'查询失败');
+//        }
     }
 
     public function doConsume()
