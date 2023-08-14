@@ -32,6 +32,7 @@ class Coupon extends Base
             $resp = $wechatInstance->chain("v3/marketing/busifavor/coupons/use")->post([
                 'json' => [
                     'coupon_code' => $coupon_code,
+                    'stock_id' => $couponInfo['stock_id'],
                     'appid' => $wechat_setting_data['wechatAppId'],
                     'use_time' => date('c',time()),
                     'use_request_no' => random(32,false)
