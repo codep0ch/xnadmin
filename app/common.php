@@ -204,10 +204,9 @@ php;
     return $html;
 }
 
-function commonApiReturn ($code, $data, $msg, $httpStatus){
+function commonApiReturn ($code, $data, $msg){
     return json([
-        'code' => $httpStatus,
-        'res_code' => $code,
+        'code' => $code,
         'data' => $data,
         'msg' => $msg
     ],$code);
