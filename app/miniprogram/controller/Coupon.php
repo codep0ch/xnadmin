@@ -18,6 +18,12 @@ class Coupon extends Base
         $couponInfo = CouponModel::find($couponLog['couponid']);
         $couponInfo['discount_amount'] = round($couponInfo['discount_amount']/100, 2);
         $couponInfo['transaction_minimum'] = round($couponInfo['transaction_minimum']/100, 2);
+        if($couponInfo['stock_type'] == 'NORMAL'){
+            $couponInfo['stock_type'] = '满减券';
+        }else{
+            $couponInfo['stock_type'] = '折扣券';
+        }
+
         return commonApiReturn(200,$couponInfo,'查询成功');
     }
 
