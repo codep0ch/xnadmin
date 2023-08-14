@@ -5,6 +5,7 @@ namespace app\admin\controller;
 
 use app\common\controller\AdminBase;
 use app\common\model\AuthRule;
+use app\common\model\CouponSendLog;
 use think\facade\Session;
 
 class Index extends AdminBase
@@ -50,7 +51,11 @@ class Index extends AdminBase
             '服务器时间' => date("Y年n月j日 H:i:s"),
             '北京时间' => gmdate("Y年n月j日 H:i:s", time() + 8 * 3600),
         );
-        return view('',['server_info'=>$server_info]);
+        $today_begin_time = strtotime(date('Y-m-d').' 00:00:00');
+        $today_end_time = strtotime(date('Y-m-d').' 23:59:59');
+        $receive = CouponSendLog::where('create_time', '>=', $today_begin_time)->where('create_time', '<=', $today_end_time)->where('status', '=', '0')->select();
+        $consume = CouponSendLog::where('create_time', '>=', $today_begin_time)->where('create_time', '<=', $today_end_time)->where('status', '=', '1')->select();
+        return view('',['server_info'=>$server_info, 'receive' => $receive, 'consume' => $consume]);
     }
 
     public function about()
