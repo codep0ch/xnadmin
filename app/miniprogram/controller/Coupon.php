@@ -23,7 +23,9 @@ class Coupon extends Base
             $wechat_setting_data['platformCertificateFilePath']
         )->getInstance();
         $couponLog = CouponSendLog::create()->where(['code' => $coupon_code])->find();
-        if(\app\common\model\Coupon::create()->find($couponLog['couponid'])[''])
+        if(\app\common\model\Coupon::create()->find($couponLog['couponid'])['status'] != 1){
+            return commonApiReturn(400,[],'券禁止核销');
+        }
         try {
             $resp = $wechatInstance->chain("v3/marketing/busifavor/coupons/use")->post([
                 'json' => [
