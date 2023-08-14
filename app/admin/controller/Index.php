@@ -55,7 +55,7 @@ class Index extends AdminBase
         $today_end_time = strtotime(date('Y-m-d').' 23:59:59');
         $receive = CouponSendLog::where('create_time', '>=', $today_begin_time)->where('create_time', '<=', $today_end_time)->where('is_consume', '=', '0')->select();
         $consume = CouponSendLog::where('create_time', '>=', $today_begin_time)->where('create_time', '<=', $today_end_time)->where('is_consume', '=', '1')->select();
-        return view('',['server_info'=>$server_info, 'receive' => $receive, 'consume' => $consume]);
+        return view('',['server_info'=>$server_info, 'receive' => count($receive), 'consume' => count($consume)]);
     }
 
     public function about()
