@@ -28,6 +28,9 @@ class Wechat extends AdminBase
         }
         $wechat_setting_data = WechatSettingModel::find(1);
         $wechat = new \utils\Wechat();
+        if(!file_exists($wechat_setting_data['merchantPrivateKeyFile'])){
+            exit('草泥马');
+        }
         $status = $wechat->createWechatPay(
             $wechat_setting_data['merchantId'],
             $wechat_setting_data['merchantPrivateKeyFile'],
